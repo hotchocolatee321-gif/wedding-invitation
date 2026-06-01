@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Vinoli & Manjitha</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Premium Luxury Wedding & Signature Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Pinyon+Script&family=Montserrat:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Library for smooth element reveals -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0a0a0c] text-[#f4f4f6] font-['Montserrat'] overflow-x-hidden select-none">
+
+    <!-- Audio Element -->
+    <audio id="bg-music" loop>
+        <source src="assets/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 1. ROYAL ENTRY PORTAL (FIRST SCREEN) -->
+    <section id="landing-page" class="fixed inset-0 bg-[#0b0b0f] z-50 flex flex-col justify-center items-center transition-all duration-[1200ms] ease-in-out overflow-hidden">
+        
+        <!-- Royal Inner Gold Border Frame -->
+        <div class="absolute inset-4 md:inset-6 border border-[#dfba73]/30 pointer-events-none z-10"></div>
+        <div class="absolute inset-5 md:inset-7 border-2 border-[#dfba73]/10 pointer-events-none z-10"></div>
+        
+        <!-- Ornate Royal Corner Accents -->
+        <div class="absolute top-8 left-8 w-8 h-8 border-t-2 border-l-2 border-[#dfba73]/60 z-20"></div>
+        <div class="absolute top-8 right-8 w-8 h-8 border-t-2 border-r-2 border-[#dfba73]/60 z-20"></div>
+        <div class="absolute bottom-8 left-8 w-8 h-8 border-b-2 border-l-2 border-[#dfba73]/60 z-20"></div>
+        <div class="absolute bottom-8 right-8 w-8 h-8 border-b-2 border-r-2 border-[#dfba73]/60 z-20"></div>
+
+        <!-- Subtle Royal Background Emblem -->
+        <div class="absolute class-royal-emblem pointer-events-none opacity-[0.03] transform scale-150 text-[#dfba73] font-['Cinzel'] text-9xl select-none z-0">VM</div>
+
+        <!-- Content Container -->
+        <div class="text-center p-6 z-20 max-w-sm transform transition-all duration-1000">
+            <p class="font-['Cinzel'] text-[10px] tracking-[0.4em] text-[#dfba73]/80 uppercase mb-8">The Wedding Invitation</p>
+            
+            <!-- Royal Signature Typography Frame -->
+            <div class="space-y-2 my-10">
+                <h1 class="font-['Pinyon_Script'] text-6xl md:text-7xl text-white tracking-wide normal-case drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+                    Vinoli
+                </h1>
+                <p class="font-['Playfair_Display'] text-2xl text-[#dfba73] italic font-light my-2">&amp;</p>
+                <h1 class="font-['Pinyon_Script'] text-6xl md:text-7xl text-white tracking-wide normal-case drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+                    Manjitha
+                </h1>
+            </div>
+            
+            <!-- Royal Styled Enter Button -->
+            <button id="enter-btn" class="mt-8 px-14 py-4 border border-[#dfba73]/50 bg-[#121218]/40 rounded-none font-['Cinzel'] uppercase tracking-[0.3em] text-[10px] text-[#dfba73] hover:bg-[#dfba73] hover:text-black hover:border-[#dfba73] transition-all duration-500 cursor-pointer shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md">
+                Enter
+            </button>
+        </div>
+    </section>
+
+    <!-- MAIN APP CARDS CONTAINER (POPUP PAGE) -->
+    <main id="main-content" class="hidden opacity-0 transition-opacity duration-1000 max-w-md mx-auto bg-[#111115] min-h-screen shadow-[0_0_50px_rgba(0,0,0,0.8)] relative border-x border-[#dfba73]/10">
+        
+        <!-- Falling Luxury Champagne Flakes Layer -->
+        <canvas id="petal-canvas" class="absolute inset-0 pointer-events-none z-40"></canvas>
+
+        <!-- 2. CINEMATIC HERO SECTION WITH BACKGROUND VIDEO -->
+        <section class="relative h-screen flex flex-col justify-center items-center p-6 text-center overflow-hidden">
+            <!-- Background Video Layer -->
+            <div class="absolute inset-0 w-full h-full z-0">
+                <video loop muted playsinline class="w-full h-full object-cover">
+                    <source src="assets/wedding-bg.mp4" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 bg-black/30"></div>
+            </div>
+
+            <!-- LOW TRANSPARENCY WHITE BOX OVERLAY -->
+            <div class="relative z-10 w-full max-w-[340px] bg-white/10 backdrop-blur-md border border-white/10 p-8 py-12 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-center" data-aos="zoom-in" data-aos-duration="1200">
+                
+                <!-- Small font "save the date" -->
+                <p class="font-['Cinzel'] text-[10px] tracking-[0.3em] text-[#dfba73] uppercase font-semibold mb-6">
+                    Save The Date
+                </p>
+                
+                <!-- Large font "Vinoli & Manjitha" -->
+                <h2 class="font-['Playfair_Display'] text-3xl font-bold tracking-wide text-white leading-tight mb-6">
+                    Vinoli &amp; Manjitha
+                </h2>
+                
+                <!-- Minimalist dividing line -->
+                <div class="w-12 h-[1px] bg-[#dfba73]/40 mx-auto mb-6"></div>
+                
+                <!-- Wedding Date -->
+                <p class="font-['Cinzel'] text-xl tracking-[0.2em] font-medium text-white mb-6">
+                    30 . 07 . 2026
+                </p>
+                
+                <!-- Venue Details -->
+                <p class="text-[10px] text-gray-200 uppercase tracking-[0.2em] font-light leading-relaxed">
+                    The Blue Water Hotel and Spa
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. THE CELEBRATION OF LOVE CREAM SECTION WITH BLACK WATERMARK -->
+        <section class="bg-[#faf7f2] text-[#1a1a1f] p-8 py-20 text-center relative overflow-hidden flex flex-col items-center border-b border-[#dfba73]/20">
+            
+            <!-- High-End Soft Black Monogram Watermark Design Background Layer -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
+                <div class="font-['Cinzel'] text-[13rem] font-bold text-black/[0.035] tracking-tighter leading-none transform translate-y-[-10px]">
+                    VM
+                </div>
+            </div>
+
+            <!-- Foreground Content Wrapper -->
+            <div class="relative z-10 flex flex-col items-center w-full">
+                <!-- Lines and Heart Decoration -->
+                <div class="flex items-center justify-center space-x-4 w-full mb-5" data-aos="fade-up">
+                    <div class="w-14 h-[1px] bg-[#dfba73]"></div>
+                    <!-- Heart Icon SVG -->
+                    <svg class="w-4 h-4 text-[#dfba73] fill-current" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5w-1c0-3.78-3.4-6.86-8.55-11.54L12 21.35z"/>
+                    </svg>
+                    <div class="w-14 h-[1px] bg-[#dfba73]"></div>
+                </div>
+
+                <!-- Header Text -->
+                <p class="font-['Cinzel'] text-[11px] tracking-[0.25em] text-[#dfba73] font-bold mb-8 uppercase" data-aos="fade-up" data-aos-delay="100">
+                    The Celebration of Love
+                </p>
+
+                <!-- Couples Names in Massive High-End Gold Typography -->
+                <div class="space-y-0.5 mb-8 w-full" data-aos="fade-up" data-aos-delay="200">
+                    <h2 class="font-['Playfair_Display'] text-5xl font-black tracking-wide uppercase text-[#dfba73]">
+                        Vinoli
+                    </h2>
+                    <p class="font-['Playfair_Display'] text-2xl text-gray-400 font-light my-2">&amp;</p>
+                    <h2 class="font-['Playfair_Display'] text-5xl font-black tracking-wide uppercase text-[#dfba73]">
+                        Manjitha
+                    </h2>
+                </div>
+
+                <!-- Bold Family Invitation Subtext -->
+                <p class="font-['Montserrat'] text-xs text-[#1a1a1f] font-bold tracking-wide max-w-[290px] leading-relaxed mb-10" data-aos="fade-up" data-aos-delay="300">
+                    Together with our families, we joyfully invite you to join us
+                </p>
+
+                <!-- Cave Rectangular Badge Layout (Cream Color Background, Gold text, Luxury Shadow) -->
+                <div class="w-64 py-4 rounded-t-full rounded-b-none bg-[#faf7f2] border border-[#dfba73]/15 flex flex-col justify-center items-center shadow-[0_22px_45px_rgba(165,150,130,0.3)] p-4 transform hover:scale-[1.02] transition-transform duration-500" data-aos="zoom-in" data-aos-delay="400">
+                    <p class="font-['Cinzel'] text-2xl font-bold tracking-[0.15em] text-[#dfba73] font-sans">
+                        30 . 07 . 2026
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ENLARGED CREAM COUNTDOWN TIMER SECTION WITH BLACK FLORAL WATERMARK -->
+        <section class="bg-[#faf7f2] text-[#1a1a1f] p-6 py-32 text-center relative overflow-hidden border-b border-[#dfba73]/20">
+            
+            <!-- Elegant Low-Opacity Vector Black Floral Watermark Layers -->
+            <div class="absolute -top-12 -left-12 w-48 h-48 pointer-events-none select-none opacity-[0.035] text-black z-0">
+                <svg viewBox="0 0 100 100" class="w-full h-full fill-current">
+                    <path d="M50,0 C45,20 20,25 20,40 C20,55 35,55 50,75 C65,55 80,55 80,40 C80,25 55,20 50,0 Z M50,25 C55,35 65,40 50,55 C35,40 45,35 50,25 Z"/>
+                    <path d="M50,45 C40,65 15,60 5,75 C-5,90 15,100 45,95 C40,85 45,75 50,45 Z" opacity="0.7"/>
+                    <path d="M50,45 C60,65 85,60 95,75 C105,90 85,100 55,95 C60,85 55,75 50,45 Z" opacity="0.7"/>
+                </svg>
+            </div>
+            <div class="absolute -bottom-12 -right-12 w-48 h-48 pointer-events-none select-none opacity-[0.035] text-black z-0 transform rotate-180">
+                <svg viewBox="0 0 100 100" class="w-full h-full fill-current">
+                    <path d="M50,0 C45,20 20,25 20,40 C20,55 35,55 50,75 C65,55 80,55 80,40 C80,25 55,20 50,0 Z M50,25 C55,35 65,40 50,55 C35,40 45,35 50,25 Z"/>
+                </svg>
+            </div>
+
+            <!-- Content elements aligned on top of watermark layout -->
+            <div class="relative z-10">
+                <!-- Small Line, THE FINAL, COUNTDOWN, and Line Layout -->
+                <div class="flex flex-col items-center justify-center w-full mb-8" data-aos="fade-up">
+                    <!-- Top Small Line -->
+                    <div class="w-12 h-[1px] bg-[#dfba73]/70 mb-4"></div>
+                    
+                    <!-- THE FINAL Text -->
+                    <p class="font-['Cinzel'] text-[11px] tracking-[0.3em] text-[#dfba73] font-bold uppercase mb-2">
+                        The Final
+                    </p>
+                    
+                    <!-- COUNTDOWN with Left and Right Lines -->
+                    <div class="flex items-center justify-center space-x-5 w-full">
+                        <div class="w-10 h-[1px] bg-[#dfba73]/50"></div>
+                        <p class="font-['Cinzel'] text-[11px] tracking-[0.3em] text-[#dfba73] font-bold uppercase">
+                            Countdown
+                        </p>
+                        <div class="w-10 h-[1px] bg-[#dfba73]/50"></div>
+                    </div>
+                </div>
+
+                <!-- Large Elegant Distinct Gold Font Heading Text Split Over Lines -->
+                <h3 class="font-['Playfair_Display'] text-5xl font-black italic tracking-wide text-[#dfba73] leading-tight mb-8" data-aos="fade-up" data-aos-delay="100">
+                    Until We Say <br><span class="not-italic text-[#dfba73] drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]">''I Do''</span>
+                </h3>
+
+                <!-- Romantic Description Subtext -->
+                <p class="font-['Montserrat'] text-xs text-gray-500 font-light tracking-wide max-w-[320px] mx-auto leading-relaxed mb-16" data-aos="fade-up" data-aos-delay="200">
+                    Time is standing still as we eagerly await the moment our forever begins.
+                </p>
+
+                <!-- Arched "Cave" Square Countdown Layout (Enlarged Cream Shapes, Large Gold Numbers) -->
+                <div class="grid grid-cols-4 gap-4 w-full max-w-sm mx-auto px-1" data-aos="zoom-in" data-aos-delay="300">
+                    
+                    <!-- Days Element -->
+                    <div class="bg-[#fdfbf9] p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(165,150,130,0.32)] transform hover:translate-y-[-4px] transition-all duration-300">
+                        <span id="days" class="block text-4xl font-bold font-sans text-[#dfba73] tracking-tight">00</span>
+                        <span class="text-[9px] font-['Cinzel'] tracking-widest text-[#dfba73]/80 uppercase mt-5 font-bold block">Days</span>
+                    </div>
+
+                    <!-- Hours Element -->
+                    <div class="bg-[#fdfbf9] p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(165,150,130,0.32)] transform hover:translate-y-[-4px] transition-all duration-300">
+                        <span id="hours" class="block text-4xl font-bold font-sans text-[#dfba73] tracking-tight">00</span>
+                        <span class="text-[9px] font-['Cinzel'] tracking-widest text-[#dfba73]/80 uppercase mt-5 font-bold block">Hours</span>
+                    </div>
+
+                    <!-- Minutes Element -->
+                    <div class="bg-[#fdfbf9] p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(165,150,130,0.32)] transform hover:translate-y-[-4px] transition-all duration-300">
+                        <span id="minutes" class="block text-4xl font-bold font-sans text-[#dfba73] tracking-tight">00</span>
+                        <span class="text-[9px] font-['Cinzel'] tracking-widest text-[#dfba73]/80 uppercase mt-5 font-bold block">Mins</span>
+                    </div>
+
+                    <!-- Seconds Element -->
+                    <div class="bg-[#fdfbf9] p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(165,150,130,0.32)] transform hover:translate-y-[-4px] transition-all duration-300">
+                        <span id="seconds" class="block text-4xl font-bold font-sans text-[#dfba73] tracking-tight">00</span>
+                        <span class="text-[9px] font-['Cinzel'] tracking-widest text-[#dfba73]/80 uppercase mt-5 font-bold block">Secs</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. THE PROTAGONISTS SECTION -->
+        <section class="bg-[#f4efe6] text-[#1a1a1f] p-8 py-24 text-center relative overflow-hidden border-b border-black/10">
+            
+            <!-- Headers and Lines Design Layout -->
+            <div class="flex flex-col items-center justify-center w-full mb-8" data-aos="fade-up">
+                <div class="w-14 h-[1px] bg-black/40 mb-3"></div>
+                <p class="font-['Cinzel'] text-[12px] tracking-[0.35em] text-black font-bold uppercase mb-3">
+                    The Protagonists
+                </p>
+                <div class="w-14 h-[1px] bg-black/40 mb-8"></div>
+
+                <!-- Vinoli & Munjitha Main Gold Title with Black Ampersand Accent -->
+                <h2 class="font-['Playfair_Display'] text-4xl font-black tracking-wide uppercase text-[#dfba73] mb-4">
+                    Vinoli <span class="text-black font-light font-serif lowercase">&amp;</span> Munjitha
+                </h2>
+
+                <!-- Minimal Elegant Black Star Cluster -->
+                <div class="flex items-center space-x-1.5 opacity-80 my-2">
+                    <span class="text-black text-xs">★</span>
+                    <span class="text-black text-sm">★</span>
+                    <span class="text-black text-xs">★</span>
+                </div>
+            </div>
+
+            <!-- Profile Cards Grid Layout -->
+            <div class="space-y-16 max-w-xs mx-auto mt-12">
+                
+                <!-- 1st Profile Block: THE BRIDE -->
+                <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Black Photo Frame Lines Container -->
+                    <div class="w-56 h-72 border border-black p-2 flex items-center justify-center bg-transparent">
+                        <div class="w-full h-full overflow-hidden bg-white">
+                            <!-- Bride Image Link Context Path -->
+                            <img src="assets/bride.jpg" alt="Vinoli" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <!-- Bride Credentials Layout Block -->
+                    <div class="mt-6 space-y-1">
+                        <p class="font-['Cinzel'] text-xs tracking-[0.25em] text-black font-bold uppercase">
+                            The Bride
+                        </p>
+                        <h4 class="font-['Playfair_Display'] text-2xl font-bold tracking-wide uppercase text-[#dfba73] pt-1">
+                            Vinoli
+                        </h4>
+                        <p class="font-['Montserrat'] text-[11px] text-gray-600 font-medium tracking-wide pt-2">
+                            Daughter of MR &amp; MRS Senaka
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2nd Profile Block: THE GROOM -->
+                <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Matching Black Photo Frame Lines Container -->
+                    <div class="w-56 h-72 border border-black p-2 flex items-center justify-center bg-transparent">
+                        <div class="w-full h-full overflow-hidden bg-white">
+                            <!-- Groom Image Link Context Path -->
+                            <img src="assets/groom.jpg" alt="Munjitha" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <!-- Groom Credentials Layout Block -->
+                    <div class="mt-6 space-y-1">
+                        <p class="font-['Cinzel'] text-xs tracking-[0.25em] text-black font-bold uppercase">
+                            The Groom
+                        </p>
+                        <h4 class="font-['Playfair_Display'] text-2xl font-bold tracking-wide uppercase text-[#dfba73] pt-1">
+                            Munjitha
+                        </h4>
+                        <p class="font-['Montserrat'] text-[11px] text-gray-600 font-medium tracking-wide pt-2">
+                            Son of MR &amp; MRS Millaniya
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. GOOGLE MAPS VENUE SECTION -->
+        <section class="p-8 text-center bg-[#0e0e12] border-t border-[#dfba73]/10" data-aos="fade-up">
+            <p class="font-['Cinzel'] text-[10px] tracking-widest text-[#dfba73] mb-2 uppercase">The Venue</p>
+            <h3 class="font-['Playfair_Display'] text-3xl font-semibold text-white">Where We Celebrate</h3>
+            <p class="text-xs text-gray-400 mt-2 mb-6 font-light">The Blue Water Hotel and Spa, Wadduwa, Sri Lanka</p>
+            
+            <div class="overflow-hidden border border-[#dfba73]/20 shadow-2xl h-64 mb-6">
+                <iframe class="w-full h-full grayscale invert opacity-60 contrast-125" src="https://maps.google.com/maps?q=The%20Blue%20Water%20Resort%20Wadduwa&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no"></iframe>
+            </div>
+
+            <a href="https://maps.google.com/?q=The+Blue+Water+Resort+Wadduwa" target="_blank" class="inline-block px-8 py-3.5 text-[10px] font-['Cinzel'] tracking-[0.15em] uppercase border border-[#dfba73]/40 text-[#dfba73] bg-transparent hover:bg-[#dfba73] hover:text-black transition-all duration-300">
+                View Location Map
+            </a>
+        </section>
+
+        <!-- 7. RSVP FORM -->
+        <section class="p-8 bg-gradient-to-b from-[#111115] to-[#070709]" data-aos="fade-up">
+            <div class="text-center mb-8">
+                <p class="font-['Cinzel'] text-[10px] tracking-widest text-[#dfba73] mb-2 uppercase">Kindly Respond</p>
+                <h3 class="font-['Playfair_Display'] text-3xl font-semibold text-white">Reserve Your Seat</h3>
+                <div class="w-8 h-[1px] bg-[#dfba73]/50 mx-auto mt-3"></div>
+            </div>
+
+            <form action="https://formspree.io/f/mpqngngg" method="POST" class="space-y-6 text-xs">
+                <div>
+                    <label class="block font-['Cinzel'] text-gray-400 tracking-wider mb-2 uppercase text-[10px]">Full Name</label>
+                    <input type="text" name="name" required="" placeholder="Your honorable name" class="w-full p-4 rounded-none bg-[#16161c] border border-white/10 focus:border-[#dfba73] focus:outline-none text-white text-sm transition-all">
+                </div>
+                <div>
+                    <label class="block font-['Cinzel'] text-gray-400 tracking-wider mb-2 uppercase text-[10px]">Number of Guests</label>
+                    <select name="guests" class="w-full p-4 rounded-none bg-[#16161c] border border-white/10 focus:border-[#dfba73] focus:outline-none text-white text-sm transition-all">
+                        <option class="bg-[#111115]">Just Me (1 Guest)</option>
+                        <option class="bg-[#111115]">2 Guests</option>
+                        <option class="bg-[#111115]">3+ Guests</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full py-4 bg-[#dfba73] text-black font-['Cinzel'] font-bold uppercase tracking-[0.2em] hover:bg-[#ebd09b] transition-all duration-300 mt-4 text-xs">
+                    Confirm Attendance
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Animation Injection Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

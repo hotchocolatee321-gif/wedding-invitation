@@ -1,0 +1,29 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    background-color: #0a0a0c;
+}
+
+/* App framing container look */
+main {
+    max-width: 440px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+}
+
+/* Centers the majestic background background emblem */
+.class-royal-emblem {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Hide standard scrollbars for clean look */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+input, select {
+    transition: all 0.3s ease;
+}
