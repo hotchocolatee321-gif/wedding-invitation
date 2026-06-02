@@ -15,7 +15,11 @@
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <section id="landing-page" class="fixed inset-0 bg-[#0b0b0f] z-50 flex flex-col justify-center items-center transition-all duration-[1200ms] ease-in-out overflow-hidden">
+    <!-- UPDATED: Landing page now uses entry.jpeg as a full-screen background image -->
+    <section id="landing-page" class="fixed inset-0 z-50 flex flex-col justify-center items-center transition-all duration-[1200ms] ease-in-out overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('entry.jpeg');">
+        
+        <!-- Subtle dark overlay to ensure your white and gold text remains perfectly readable against the background -->
+        <div class="absolute inset-0 bg-black/15 z-0"></div>
         
         <div class="absolute inset-4 md:inset-6 border border-[#dfba73]/30 pointer-events-none z-10"></div>
         <div class="absolute inset-5 md:inset-7 border-2 border-[#dfba73]/10 pointer-events-none z-10"></div>
@@ -28,24 +32,19 @@
         <div class="absolute class-royal-emblem pointer-events-none opacity-[0.03] transform scale-150 text-[#dfba73] font-['Cinzel'] text-9xl select-none z-0">VM</div>
 
         <div class="text-center p-6 z-20 max-w-sm transform transition-all duration-1000 flex flex-col items-center">
-            <p class="font-['Cinzel'] text-[10px] tracking-[0.4em] text-[#dfba73]/80 uppercase mb-8">The Wedding Invitation</p>
+            <p class="font-['Cinzel'] text-[10px] tracking-[0.4em] text-[#dfba73] uppercase mb-8 font-bold drop-shadow-md">The Wedding Invitation</p>
             
-            <!-- FIXED: Changed image source extension from .jpg to .jpeg to match your uploaded file -->
-            <div class="z-20 mb-2">
-                <img src="entry.jpeg" alt="Invitation Cover" class="w-36 h-36 rounded-full border-2 border-[#dfba73]/40 object-cover shadow-[0_0_25px_rgba(223,186,115,0.25)]">
-            </div>
-
             <div class="space-y-2 my-6">
-                <h1 class="font-['Pinyon_Script'] text-6xl md:text-7xl text-white tracking-wide normal-case drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+                <h1 class="font-['Pinyon_Script'] text-6xl md:text-7xl text-white tracking-wide normal-case drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
                     Vinoli
                 </h1>
-                <p class="font-['Playfair_Display'] text-2xl text-[#dfba73] italic font-light my-1">&amp;</p>
-                <h1 class="font-['Pinyon_Script'] text-6xl md:text-7xl text-white tracking-wide normal-case drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+                <p class="font-['Playfair_Display'] text-2xl text-[#dfba73] italic font-light my-1 drop-shadow-md">&amp;</p>
+                <h1 class="font-['Pinyon_Script'] text-6xl md:text-7xl text-white tracking-wide normal-case drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
                     Manjitha
                 </h1>
             </div>
             
-            <button id="enter-btn" class="mt-4 px-14 py-4 border border-[#dfba73]/50 bg-[#121218]/40 rounded-none font-['Cinzel'] uppercase tracking-[0.3em] text-[10px] text-[#dfba73] hover:bg-[#dfba73] hover:text-black hover:border-[#dfba73] transition-all duration-500 cursor-pointer shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md">
+            <button id="enter-btn" class="mt-4 px-14 py-4 border border-[#dfba73]/50 bg-[#121218]/60 rounded-none font-['Cinzel'] uppercase tracking-[0.3em] text-[10px] text-[#dfba73] hover:bg-[#dfba73] hover:text-black hover:border-[#dfba73] transition-all duration-500 cursor-pointer shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-md">
                 Enter
             </button>
         </div>
@@ -79,7 +78,6 @@
                     30 . 07 . 2026
                 </p>
                 
-                <!-- FIXED: Populated missing venue subtitle label text layout -->
                 <p class="text-[10px] text-gray-200 uppercase tracking-[0.2em] font-light leading-relaxed">
                     The Blue Water Hotel & Spa
                 </p>
