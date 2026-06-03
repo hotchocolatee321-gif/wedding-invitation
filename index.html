@@ -4,40 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wedding of Vinoli & Manjitha</title>
+    <!-- Tailwind CSS Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fixed Google Fonts Link (Explicitly loading Cinzel Decorative with all style configurations) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Pinyon+Script&family=Montserrat:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Custom Style Override to guarantee Cinzel Decorative takes absolute priority -->
+    <style>
+        .font-cinzel-decor {
+            font-family: 'Cinzel Decorative', serif !important;
+        }
+    </style>
 </head>
-<body class="bg-[#0a0a0c] text-[#f4f4f6] font-['Montserrat'] overflow-x-hidden select-none">
+<!-- Global Background applied to body so it stretches across all sections smoothly -->
+<body class="text-[#f4f4f6] font-['Montserrat'] overflow-x-hidden select-none bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('main-bg.jpg');">
 
     <audio id="bg-music" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Landing Page (Keeps entry.jpg as its own full-screen background) -->
     <section id="landing-page" class="fixed inset-0 z-50 flex flex-col justify-center items-center transition-all duration-[1200ms] ease-in-out overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('entry.jpg');">
         
+        <!-- Subtle dark overlay for readability -->
         <div class="absolute inset-0 bg-black/15 z-0"></div>
         
+        <!-- Decorative Frames -->
         <div class="absolute inset-4 md:inset-6 border border-[#dfba73]/30 pointer-events-none z-10"></div>
         <div class="absolute inset-5 md:inset-7 border-2 border-[#dfba73]/10 pointer-events-none z-10"></div>
         
+        <!-- Corner Accents -->
         <div class="absolute top-8 left-8 w-8 h-8 border-t-2 border-l-2 border-[#dfba73]/60 z-20"></div>
         <div class="absolute top-8 right-8 w-8 h-8 border-t-2 border-r-2 border-[#dfba73]/60 z-20"></div>
         <div class="absolute bottom-8 left-8 w-8 h-8 border-b-2 border-l-2 border-[#dfba73]/60 z-20"></div>
         <div class="absolute bottom-8 right-8 w-8 h-8 border-b-2 border-r-2 border-[#dfba73]/60 z-20"></div>
 
+        <!-- Watermark Monogram -->
         <div class="absolute pointer-events-none opacity-[0.03] transform scale-150 text-[#dfba73] font-['Cinzel'] text-9xl select-none z-0">VM</div>
 
-        <div class="text-center p-6 z-20 max-w-lg transform transition-all duration-1000 flex flex-col items-center">
+        <div class="text-center p-6 z-20 max-w-xl transform transition-all duration-1000 flex flex-col items-center">
             <p class="font-['Cinzel'] text-[10px] tracking-[0.4em] text-[#dfba73] uppercase mb-8 font-bold drop-shadow-md">The Wedding Invitation</p>
             
-            <div class="space-y-4 my-6">
-                <h1 class="text-7xl md:text-8xl text-white tracking-wide uppercase drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]" style="font-family: 'Cinzel Decorative', serif;">
+            <!-- Completely Updated Names & Ampersand Block using Cinzel Decorative -->
+            <div class="space-y-4 my-6 flex flex-col items-center">
+                <h1 class="font-cinzel-decor text-6xl sm:text-7xl md:text-8xl text-white tracking-wide uppercase drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
                     Vinoli
                 </h1>
-                <p class="font-['Playfair_Display'] text-3xl text-[#dfba73] italic font-light my-2 drop-shadow-md">&</p>
-                <h1 class="text-7xl md:text-8xl text-white tracking-wide uppercase drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]" style="font-family: 'Cinzel Decorative', serif;">
+                
+                <span class="font-cinzel-decor text-5xl sm:text-6xl md:text-7xl text-[#dfba73] uppercase my-2 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+                    &
+                </span>
+                
+                <h1 class="font-cinzel-decor text-6xl sm:text-7xl md:text-8xl text-white tracking-wide uppercase drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
                     Manjitha
                 </h1>
             </div>
@@ -48,10 +72,12 @@
         </div>
     </section>
 
-    <main id="main-content" class="hidden opacity-0 transition-opacity duration-1000 max-w-md mx-auto bg-[#111115] min-h-screen shadow-[0_0_50px_rgba(0,0,0,0.8)] relative border-x border-[#dfba73]/10">
+    <!-- Main Mobile Invitation Frame -->
+    <main id="main-content" class="hidden opacity-0 transition-opacity duration-1000 max-w-md mx-auto min-h-screen shadow-[0_0_50px_rgba(0,0,0,0.8)] relative border-x border-[#dfba73]/10 bg-transparent">
         
         <canvas id="petal-canvas" class="absolute inset-0 pointer-events-none z-40"></canvas>
 
+        <!-- Hero Section with Background Video (Stays intact, overlays on top of the main background) -->
         <section class="relative h-screen flex flex-col justify-center items-center p-6 text-center overflow-hidden">
             <div class="absolute inset-0 w-full h-full z-0">
                 <video loop muted playsinline class="w-full h-full object-cover">
@@ -74,10 +100,15 @@
                 <p class="font-['Cinzel'] text-xl tracking-[0.2em] font-medium text-white mb-6">
                     30 . 07 . 2026
                 </p>
+                
+                <p class="text-[10px] text-gray-200 uppercase tracking-[0.2em] font-light leading-relaxed">
+                    The Blue Water Hotel & Spa
+                </p>
             </div>
         </section>
 
-        <section class="bg-[#faf7f2] text-[#1a1a1f] p-8 py-20 text-center relative overflow-hidden flex flex-col items-center border-b border-[#dfba73]/20">
+        <!-- Announcement Section (Switched to transparent to reveal main-bg.jpg) -->
+        <section class="bg-transparent text-[#1a1a1f] p-8 py-20 text-center relative overflow-hidden flex flex-col items-center border-b border-[#dfba73]/20">
             <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
                 <div class="font-['Cinzel'] text-[13rem] font-bold text-black/[0.035] tracking-tighter leading-none transform translate-y-[-10px]">
                     VM
@@ -107,11 +138,12 @@
                     </h2>
                 </div>
 
-                <p class="font-['Montserrat'] text-xs text-[#1a1a1f] font-bold tracking-wide max-w-[290px] leading-relaxed mb-10" data-aos="fade-up" data-aos-delay="300">
+                <!-- Text tweaked to white for optimized legibility against darker custom background themes -->
+                <p class="font-['Montserrat'] text-xs text-white font-bold tracking-wide max-w-[290px] leading-relaxed mb-10" data-aos="fade-up" data-aos-delay="300">
                     Together with their families we joyfully invite you to our wedding ceremony on 
                 </p>
 
-                <div class="w-64 py-4 rounded-t-full rounded-b-none bg-[#faf7f2] border border-[#dfba73]/15 flex flex-col justify-center items-center shadow-[0_22px_45px_rgba(165,150,130,0.3)] p-4 transform hover:scale-[1.02] transition-transform duration-500" data-aos="zoom-in" data-aos-delay="400">
+                <div class="w-64 py-4 rounded-t-full rounded-b-none bg-black/40 backdrop-blur-sm border border-[#dfba73]/30 flex flex-col justify-center items-center shadow-[0_22px_45px_rgba(0,0,0,0.4)] p-4 transform hover:scale-[1.02] transition-transform duration-500" data-aos="zoom-in" data-aos-delay="400">
                     <p class="font-['Cinzel'] text-2xl font-bold tracking-[0.15em] text-[#dfba73]">
                         30 . 07 . 2026
                     </p>
@@ -119,20 +151,16 @@
             </div>
         </section>
 
-        <section class="bg-[#faf7f2] text-[#1a1a1f] p-6 py-32 text-center relative overflow-hidden border-b border-[#dfba73]/20">
-            <div class="absolute -top-12 -left-12 w-48 h-48 pointer-events-none select-none opacity-[0.035] text-black z-0">
+        <!-- Countdown Section (Switched to transparent to reveal main-bg.jpg) -->
+        <section class="bg-transparent text-white p-6 py-32 text-center relative overflow-hidden border-b border-[#dfba73]/20">
+            <div class="absolute -top-12 -left-12 w-48 h-48 pointer-events-none select-none opacity-[0.035] text-white z-0">
                 <svg viewBox="0 0 100 100" class="w-full h-full fill-current">
                     <path d="M50,0 C45,20 20,25 20,40 C20,55 35,55 50,75 C65,55 80,55 80,40 C80,25 55,20 50,0 Z M50,25 C55,35 65,40 50,55 C35,40 45,35 50,25 Z"/>
                     <path d="M50,45 C40,65 15,60 5,75 C-5,90 15,100 45,95 C40,85 45,75 50,45 Z" opacity="0.7"/>
                     <path d="M50,45 C60,65 85,60 95,75 C105,90 85,100 55,95 C60,85 55,75 50,45 Z" opacity="0.7"/>
                 </svg>
             </div>
-            <div class="absolute -bottom-12 -right-12 w-48 h-48 pointer-events-none select-none opacity-[0.035] text-black z-0 transform rotate-180">
-                <svg viewBox="0 0 100 100" class="w-full h-full fill-current">
-                    <path d="M50,0 C45,20 20,25 20,40 C20,55 35,55 50,75 C65,55 80,55 80,40 C80,25 55,20 50,0 Z M50,25 C55,35 65,40 50,55 C35,40 45,35 50,25 Z"/>
-                </svg>
-            </div>
-
+            
             <div class="relative z-10">
                 <div class="flex flex-col items-center justify-center w-full mb-8" data-aos="fade-up">
                     <div class="w-12 h-[1px] bg-[#dfba73]/70 mb-4"></div>
@@ -152,24 +180,25 @@
                     Until We Say <br><span class="not-italic text-[#dfba73] drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]">“I Do”</span>
                 </h3>
 
-                <p class="font-['Montserrat'] text-xs text-gray-500 font-light tracking-wide max-w-[320px] mx-auto leading-relaxed mb-16" data-aos="fade-up" data-aos-delay="200">
+                <p class="font-['Montserrat'] text-xs text-gray-300 font-light tracking-wide max-w-[320px] mx-auto leading-relaxed mb-16" data-aos="fade-up" data-aos-delay="200">
                     Time is standing still as we eagerly await the moment our forever begins.
                 </p>
 
+                <!-- Cards customized to blend smoothly over the main background layout -->
                 <div class="grid grid-cols-4 gap-4 w-full max-w-sm mx-auto px-1" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="bg-[#fdfbf9] p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(165,150,130,0.32)] transform hover:translate-y-[-4px] transition-all duration-300">
+                    <div class="bg-black/40 backdrop-blur-sm p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(0,0,0,0.5)] transform hover:translate-y-[-4px] transition-all duration-300">
                         <span id="days" class="block text-4xl font-bold text-[#dfba73] tracking-tight">00</span>
                         <span class="text-[9px] font-['Cinzel'] tracking-widest text-[#dfba73]/80 uppercase mt-5 font-bold block">Days</span>
                     </div>
-                    <div class="bg-[#fdfbf9] p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(165,150,130,0.32)] transform hover:translate-y-[-4px] transition-all duration-300">
+                    <div class="bg-black/40 backdrop-blur-sm p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(0,0,0,0.5)] transform hover:translate-y-[-4px] transition-all duration-300">
                         <span id="hours" class="block text-4xl font-bold text-[#dfba73] tracking-tight">00</span>
                         <span class="text-[9px] font-['Cinzel'] tracking-widest text-[#dfba73]/80 uppercase mt-5 font-bold block">Hours</span>
                     </div>
-                    <div class="bg-[#fdfbf9] p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(165,150,130,0.32)] transform hover:translate-y-[-4px] transition-all duration-300">
+                    <div class="bg-black/40 backdrop-blur-sm p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(0,0,0,0.5)] transform hover:translate-y-[-4px] transition-all duration-300">
                         <span id="minutes" class="block text-4xl font-bold text-[#dfba73] tracking-tight">00</span>
                         <span class="text-[9px] font-['Cinzel'] tracking-widest text-[#dfba73]/80 uppercase mt-5 font-bold block">Mins</span>
                     </div>
-                    <div class="bg-[#fdfbf9] p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(165,150,130,0.32)] transform hover:translate-y-[-4px] transition-all duration-300">
+                    <div class="bg-black/40 backdrop-blur-sm p-2 py-12 rounded-t-full rounded-b-none border border-[#dfba73]/20 flex flex-col justify-center items-center shadow-[0_28px_50px_rgba(0,0,0,0.5)] transform hover:translate-y-[-4px] transition-all duration-300">
                         <span id="seconds" class="block text-4xl font-bold text-[#dfba73] tracking-tight">00</span>
                         <span class="text-[9px] font-['Cinzel'] tracking-widest text-[#dfba73]/80 uppercase mt-5 font-bold block">Secs</span>
                     </div>
@@ -177,59 +206,62 @@
             </div>
         </section>
 
-        <section class="bg-[#f4efe6] text-[#1a1a1f] p-8 py-24 text-center relative overflow-hidden border-b border-black/10">
+        <!-- The Protagonists Profiles (Switched to transparent to showcase main-bg.jpg background) -->
+        <section class="bg-transparent text-white p-8 py-24 text-center relative overflow-hidden border-b border-white/10">
             <div class="flex flex-col items-center justify-center w-full mb-8" data-aos="fade-up">
-                <div class="w-14 h-[1px] bg-black/40 mb-3"></div>
-                <p class="font-['Cinzel'] text-[12px] tracking-[0.35em] text-black font-bold uppercase mb-3">
+                <div class="w-14 h-[1px] bg-white/40 mb-3"></div>
+                <p class="font-['Cinzel'] text-[12px] tracking-[0.35em] text-white font-bold uppercase mb-3">
                     The Protagonists
                 </p>
-                <div class="w-14 h-[1px] bg-black/40 mb-8"></div>
+                <div class="w-14 h-[1px] bg-white/40 mb-8"></div>
 
                 <h2 class="font-['Playfair_Display'] text-4xl font-black tracking-wide uppercase text-[#dfba73] mb-4">
-                    Vinoli <span class="text-black font-light font-serif lowercase">&</span> Manjitha
+                    Vinoli <span class="text-white font-light font-serif lowercase">&amp;</span> Manjitha
                 </h2>
 
                 <div class="flex items-center space-x-1.5 opacity-80 my-2">
-                    <span class="text-black text-xs">★</span>
-                    <span class="text-black text-sm">★</span>
-                    <span class="text-black text-xs">★</span>
+                    <span class="text-white text-xs">★</span>
+                    <span class="text-white text-sm">★</span>
+                    <span class="text-white text-xs">★</span>
                 </div>
             </div>
 
             <div class="space-y-16 max-w-xs mx-auto mt-12">
+                <!-- Bride Profile -->
                 <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-56 h-72 border border-black p-2 flex items-center justify-center bg-transparent">
+                    <div class="w-56 h-72 border border-white/40 p-2 flex items-center justify-center bg-black/20 backdrop-blur-sm">
                         <div class="w-full h-full overflow-hidden bg-white">
                             <img src="bride.jpg" alt="The Bride - Vinoli" class="w-full h-full object-cover">
                         </div>
                     </div>
                     <div class="mt-6 space-y-1">
-                        <p class="font-['Cinzel'] text-xs tracking-[0.25em] text-black font-bold uppercase">
+                        <p class="font-['Cinzel'] text-xs tracking-[0.25em] text-[#dfba73] font-bold uppercase">
                             The Bride
                         </p>
-                        <h4 class="font-['Playfair_Display'] text-2xl font-bold tracking-wide uppercase text-[#dfba73] pt-1">
+                        <h4 class="font-['Playfair_Display'] text-2xl font-bold tracking-wide uppercase text-white pt-1">
                             Vinoli
                         </h4>
-                        <p class="font-['Montserrat'] text-[11px] text-gray-600 font-medium tracking-wide pt-2">
+                        <p class="font-['Montserrat'] text-[11px] text-gray-300 font-medium tracking-wide pt-2">
                             Daughter of MR & MRS Senaka
                         </p>
                     </div>
                 </div>
 
+                <!-- Groom Profile -->
                 <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-56 h-72 border border-black p-2 flex items-center justify-center bg-transparent">
+                    <div class="w-56 h-72 border border-white/40 p-2 flex items-center justify-center bg-black/20 backdrop-blur-sm">
                         <div class="w-full h-full overflow-hidden bg-white">
                             <img src="groom.jpg" alt="The Groom - Manjitha" class="w-full h-full object-cover">
                         </div>
                     </div>
                     <div class="mt-6 space-y-1">
-                        <p class="font-['Cinzel'] text-xs tracking-[0.25em] text-black font-bold uppercase">
+                        <p class="font-['Cinzel'] text-xs tracking-[0.25em] text-[#dfba73] font-bold uppercase">
                             The Groom
                         </p>
-                        <h4 class="font-['Playfair_Display'] text-2xl font-bold tracking-wide uppercase text-[#dfba73] pt-1">
+                        <h4 class="font-['Playfair_Display'] text-2xl font-bold tracking-wide uppercase text-white pt-1">
                             Manjitha
                         </h4>
-                        <p class="font-['Montserrat'] text-[11px] text-gray-600 font-medium tracking-wide pt-2">
+                        <p class="font-['Montserrat'] text-[11px] text-gray-300 font-medium tracking-wide pt-2">
                             Son of MR & MRS Millaniya
                         </p>
                     </div>
@@ -237,21 +269,23 @@
             </div>
         </section>
 
-        <section class="p-8 text-center bg-[#0e0e12] border-t border-[#dfba73]/10" data-aos="fade-up">
+        <!-- Location/Venue Section (Blended with main-bg.jpg background) -->
+        <section class="p-8 text-center bg-transparent border-t border-[#dfba73]/10" data-aos="fade-up">
             <p class="font-['Cinzel'] text-[10px] tracking-widest text-[#dfba73] mb-2 uppercase">The Venue</p>
             <h3 class="font-['Playfair_Display'] text-3xl font-semibold text-white">Where We Celebrate</h3>
             <p class="text-xs text-gray-400 mt-2 mb-6 font-light">The Blue Water Hotel and Spa, Wadduwa, Sri Lanka</p>
             
             <div class="overflow-hidden border border-[#dfba73]/20 shadow-2xl h-64 mb-6">
-                <iframe title="The Blue Water Resort Location Map" class="w-full h-full grayscale invert opacity-60 contrast-125" src="https://maps.google.com/maps?q=The%20Blue%20Water%20Resort%20Wadduwa&t=&z=13&ie=UTF8&iwloc=&output=embed" scrolling="no"></iframe>
+                <iframe title="The Blue Water Resort Location Map" class="w-full h-full grayscale invert opacity-60 contrast-125" src="https://maps.google.com/maps?q=The%20Blue%20Water%20Resort%20Wadduwa&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" scrolling="no"></iframe>
             </div>
 
-            <a href="https://maps.google.com/?q=The+Blue+Water+Resort+Wadduwa" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 text-[10px] font-['Cinzel'] tracking-[0.15em] uppercase border border-[#dfba73]/40 text-[#dfba73] bg-transparent hover:bg-[#dfba73] hover:text-black transition-all duration-300">
+            <a href="https://maps.google.com/?q=The+Blue+Water+Resort+Wadduwa" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 text-[10px] font-['Cinzel'] tracking-[0.15em] uppercase border border-[#dfba73]/40 text-[#dfba73] bg-[#121218]/40 backdrop-blur-sm hover:bg-[#dfba73] hover:text-black transition-all duration-300">
                 View Location Map
             </a>
         </section>
 
-        <section class="p-8 bg-gradient-to-b from-[#111115] to-[#070709]" data-aos="fade-up">
+        <!-- RSVP Form Section (Blended smoothly into final background layout gradient) -->
+        <section class="p-8 bg-gradient-to-b from-transparent to-black/60" data-aos="fade-up">
             <div class="text-center mb-8">
                 <p class="font-['Cinzel'] text-[10px] tracking-widest text-[#dfba73] mb-2 uppercase">Kindly Respond</p>
                 <h3 class="font-['Playfair_Display'] text-3xl font-semibold text-white">Reserve Your Seat</h3>
@@ -261,11 +295,11 @@
             <form action="https://formspree.io/f/mpqngngg" method="POST" class="space-y-6 text-xs">
                 <div>
                     <label class="block font-['Cinzel'] text-gray-400 tracking-wider mb-2 uppercase text-[10px]">Full Name</label>
-                    <input type="text" name="name" required placeholder="Your honorable name" class="w-full p-4 rounded-none bg-[#16161c] border border-white/10 focus:border-[#dfba73] focus:outline-none text-white text-sm transition-all">
+                    <input type="text" name="name" required placeholder="Your honorable name" class="w-full p-4 rounded-none bg-black/40 backdrop-blur-sm border border-white/10 focus:border-[#dfba73] focus:outline-none text-white text-sm transition-all">
                 </div>
                 <div>
                     <label class="block font-['Cinzel'] text-gray-400 tracking-wider mb-2 uppercase text-[10px]">Number of Guests</label>
-                    <select name="guests" class="w-full p-4 rounded-none bg-[#16161c] border border-white/10 focus:border-[#dfba73] focus:outline-none text-white text-sm transition-all">
+                    <select name="guests" class="w-full p-4 rounded-none bg-black/40 backdrop-blur-sm border border-white/10 focus:border-[#dfba73] focus:outline-none text-white text-sm transition-all">
                         <option class="bg-[#111115]">Just Me (1 Guest)</option>
                         <option class="bg-[#111115]">2 Guests</option>
                         <option class="bg-[#111115]">3+ Guests</option>
