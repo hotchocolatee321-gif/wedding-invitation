@@ -4,124 +4,97 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vinoli & Manjitha – Wedding Invitation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght=400;700;900&family=Cinzel:wght=400;600;700&family=Cormorant+Garamond:ital,wght=0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {    --gold: #C9A84C;    --gold-light: #E8C96A;    --gold-dark: #A07830;    --gold-shine: #F0D080;    --white: #FFFFFF;    --off-white: #FAF8F4;    --black: #1a1a1a;    --text-dark: #2C2410;  }
   html { scroll-behavior: smooth; }
-  body {    font-family: 'Cinzel', serif;    background: var(--white);    color: var(--black);    overflow-x: hidden;  }
-  /* ===================== ROSE PETALS ===================== */  .petals-container {    position: fixed;    top: 0; left: 0;    width: 100%; height: 100%;    pointer-events: none;    z-index: 9999;    overflow: hidden;  }
+  body {    
+    font-family: 'Cinzel', serif;    
+    background: var(--white);    
+    color: var(--black);    
+    overflow-x: hidden;
+    text-align: center; /* Ensures global centering */
+  }
+
+  /* ===================== ROSE PETALS ===================== */  
+  .petals-container {    position: fixed;    top: 0; left: 0;    width: 100%; height: 100%;    pointer-events: none;    z-index: 9999;    overflow: hidden;  }
   .petal {    position: absolute;    top: -60px;    border-radius: 150% 0 150% 0;    animation: petalFall linear infinite;    opacity: 0.7;  }
   @keyframes petalFall {    0%   { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.8; }    25%  { transform: translateY(25vh) rotate(90deg) translateX(20px); }    50%  { transform: translateY(50vh) rotate(180deg) translateX(-15px); }    75%  { transform: translateY(75vh) rotate(270deg) translateX(25px); }    100% { transform: translateY(110vh) rotate(360deg) translateX(-10px); opacity: 0; }  }
-  /* ===================== PAGE 1 – LANDING ===================== */  #page-landing {    position: fixed;    top: 0; left: 0;    width: 100%; height: 100%;    background: var(--white);    display: flex;    flex-direction: column;    align-items: center;    justify-content: center;    z-index: 1000;    transition: opacity 1.2s ease, filter 1.2s ease;  }
-  #page-landing.blur-out {    opacity: 0;    filter: blur(20px);    pointer-events: none;  }
-  .landing-ornament {    color: var(--gold);    font-size: 1.4rem;    letter-spacing: 8px;    margin-bottom: 30px;    opacity: 0;    animation: fadeUp 1s ease 0.3s forwards;  }
-  .landing-name {    font-family: 'Cinzel Decorative', serif;    font-size: clamp(3.5rem, 9vw, 7rem);    font-weight: 700;    color: var(--gold);    text-shadow: 0 2px 20px rgba(201,168,76,0.3);    letter-spacing: 4px;    line-height: 1.1;    text-align: center;    opacity: 0;    animation: fadeUp 1s ease 0.6s forwards;  }
-  .landing-amp {    font-family: 'Great Vibes', cursive;    font-size: clamp(2.5rem, 6vw, 4rem);    color: var(--gold-dark);    display: block;    text-align: center;    margin: 10px 0;    opacity: 0;    animation: fadeUp 1s ease 0.9s forwards;  }
-  .landing-name-2 {    animation-delay: 1.2s !important;  }
-  .landing-sub {    font-family: 'Cormorant Garamond', serif;    font-style: italic;    color: #888;    font-size: 1rem;    letter-spacing: 4px;    text-transform: uppercase;    margin-top: 20px;    opacity: 0;    animation: fadeUp 1s ease 1.4s forwards;  }
-  .enter-btn {    margin-top: 50px;    padding: 16px 60px;    background: transparent;    border: 1.5px solid var(--gold);    color: var(--gold);    font-family: 'Cinzel', serif;    font-size: 0.85rem;    letter-spacing: 5px;    text-transform: uppercase;    cursor: pointer;    transition: all 0.4s ease;    position: relative;    overflow: hidden;    opacity: 0;    animation: fadeUp 1s ease 1.8s forwards;  }
-  .enter-btn::before {    content: '';    position: absolute;    inset: 0;    background: var(--gold);    transform: translateX(-100%);    transition: transform 0.4s ease;    z-index: -1;  }
-  .enter-btn:hover { color: white; }  .enter-btn:hover::before { transform: translateX(0); }
-  @keyframes fadeUp {    from { opacity: 0; transform: translateY(30px); }    to   { opacity: 1; transform: translateY(0); }  }
-  /* ===================== MAIN CONTENT ===================== */  #main-content {    display: none;    opacity: 0;    transition: opacity 1s ease 0.3s;  }
-  #main-content.visible {    display: block;    opacity: 1;  }
-  /* ===================== PAGE 2 – VIDEO HERO ===================== */  #page-video {    position: relative;    width: 100%;    height: 100vh;    overflow: hidden;    background: #000;  }
-  #bg-video {    position: absolute;    top: 50%; left: 50%;    transform: translate(-50%, -50%);    min-width: 100%; min-height: 100%;    width: auto; height: auto;    object-fit: cover;    opacity: 0.6;    z-index: 1;  }
-  .video-overlay {    position: absolute;    inset: 0;    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));    display: flex;    flex-direction: column;    align-items: center;    justify-content: center;    gap: 10px;    z-index: 2;  }
-  .video-text {    font-family: 'Cormorant Garamond', serif;    font-style: italic;    color: rgba(255,255,255,0.85);    font-size: clamp(1rem, 2.5vw, 1.4rem);    letter-spacing: 6px;    text-transform: uppercase;    opacity: 0;    transform: translateY(20px);    transition: opacity 1.2s ease, transform 1.2s ease;  }
-  .video-name {    font-family: 'Cinzel Decorative', serif;    font-size: clamp(3rem, 8vw, 6.5rem);    font-weight: 700;    color: var(--gold-light);    text-shadow: 0 0 40px rgba(201,168,76,0.5);    letter-spacing: 4px;    opacity: 0;    transform: translateY(25px);    transition: opacity 1.4s ease, transform 1.4s ease;  }
-  .video-amp {    font-family: 'Great Vibes', cursive;    font-size: clamp(2rem, 5vw, 3.5rem);    color: rgba(255,255,255,0.7);    opacity: 0;    transform: translateY(20px);    transition: opacity 1s ease, transform 1s ease;  }
-  .video-date {    font-family: 'Cinzel', serif;    color: var(--gold-light);    font-size: clamp(1.2rem, 3vw, 1.8rem);    letter-spacing: 6px;    opacity: 0;    transform: translateY(20px);    transition: opacity 1.2s ease, transform 1.2s ease;    margin-top: 10px;  }
-  .video-text.show, .video-name.show, .video-amp.show, .video-date.show {    opacity: 1;    transform: translateY(0);  }
-  .scroll-hint {    position: absolute;    bottom: 40px;    left: 50%;    transform: translateX(-50%);    color: rgba(255,255,255,0.5);    font-size: 0.7rem;    letter-spacing: 4px;    text-transform: uppercase;    font-family: 'Cinzel', serif;    display: flex;    flex-direction: column;    align-items: center;    gap: 8px;    animation: bounce 2s ease infinite;    z-index: 2;  }
-  .scroll-arrow {    width: 20px;    height: 20px;    border-right: 1px solid rgba(255,255,255,0.4);    border-bottom: 1px solid rgba(255,255,255,0.4);    transform: rotate(45deg);  }
-  @keyframes bounce {    0%, 100% { transform: translateX(-50%) translateY(0); }    50% { transform: translateX(-50%) translateY(8px); }  }
-  /* ===================== PAGE 3 – INVITATION ===================== */  #page-invite {    background: var(--off-white);    padding: 100px 20px;    text-align: center;    position: relative;    overflow: hidden;  }
-  .divider {    display: flex;    align-items: center;    justify-content: center;    gap: 15px;    margin-bottom: 40px;    color: var(--gold);  }
-  .divider-line {    width: 80px;    height: 1px;    background: linear-gradient(to right, transparent, var(--gold), transparent);  }
-  .divider-heart {    font-size: 1.2rem;    color: var(--gold);    animation: heartbeat 1.5s ease infinite;  }
-  @keyframes heartbeat {    0%, 100% { transform: scale(1); }    50% { transform: scale(1.2); }  }
-  .section-label {    font-family: 'Cinzel Decorative', serif;    font-size: clamp(0.7rem, 1.5vw, 0.9rem);    color: var(--gold);    letter-spacing: 8px;    text-transform: uppercase;    margin-bottom: 20px;  }
-  .couple-names-large {    font-family: 'Cinzel Decorative', serif;    font-size: clamp(2.5rem, 7vw, 5.5rem);    font-weight: 700;    color: var(--gold);    line-height: 1.2;    letter-spacing: 3px;  }
-  .couple-amp {    font-family: 'Great Vibes', cursive;    font-size: clamp(2rem, 5vw, 3.5rem);    color: var(--gold-dark);    display: block;    margin: 5px 0;  }
-  .invite-body {    font-family: 'Cormorant Garamond', serif;    font-size: clamp(1rem, 2.5vw, 1.3rem);    color: #555;    max-width: 600px;    margin: 30px auto;    line-height: 1.8;    font-style: italic;  }
-  .date-badge {    display: inline-block;    border: 1.5px solid var(--gold);    border-radius: 50px;    padding: 18px 50px;    margin-top: 20px;    box-shadow: 0 8px 30px rgba(201,168,76,0.2), inset 0 0 20px rgba(201,168,76,0.05);  }
-  .date-badge span {    font-family: 'Cinzel', serif;    font-size: clamp(1.2rem, 3vw, 1.8rem);    color: var(--gold);    letter-spacing: 6px;    font-weight: 600;  }
-  /* ===================== PAGE 4 – COUNTDOWN ===================== */  #page-countdown {    background: var(--white);    padding: 100px 20px;    text-align: center;    position: relative;    overflow: hidden;  }
-  .countdown-title {    font-family: 'Cinzel Decorative', serif;    font-size: clamp(0.8rem, 2vw, 1rem);    color: var(--gold);    letter-spacing: 8px;    text-transform: uppercase;    margin-bottom: 20px;  }
-  .countdown-heading {    font-family: 'Cormorant Garamond', serif;    font-size: clamp(2rem, 5vw, 3.5rem);    font-weight: 600;    color: var(--black);    margin-bottom: 15px;  }
-  .countdown-heading em { font-style: italic; color: var(--gold); }
-  .countdown-sub {    font-family: 'Cormorant Garamond', serif;    font-size: clamp(0.9rem, 2vw, 1.1rem);    color: #888;    font-style: italic;    max-width: 500px;    margin: 0 auto 60px;    font-weight: 600;    letter-spacing: 1px;  }
-  .countdown-grid {    display: flex;    justify-content: center;    gap: 20px;    flex-wrap: wrap;  }
-  .countdown-box {    background: var(--off-white);    border: 1px solid rgba(201,168,76,0.3);    border-radius: 16px 16px 0 0;    padding: 30px 25px 25px;    min-width: 110px;    box-shadow: 0 10px 30px rgba(201,168,76,0.1);    opacity: 0;    transform: translateY(40px);    transition: opacity 0.7s ease, transform 0.7s ease;  }
-  .countdown-box.animate-in {    opacity: 1;    transform: translateY(0);  }
-  .countdown-number {    font-family: 'Cinzel Decorative', serif;    font-size: clamp(2rem, 5vw, 3rem);    font-weight: 700;    color: var(--gold);    line-height: 1;    display: block;  }
-  .countdown-label {    font-family: 'Cinzel', serif;    font-size: 0.65rem;    letter-spacing: 3px;    color: #999;    text-transform: uppercase;    margin-top: 8px;    display: block;  }
-  /* ===================== PAGE 5 – CEREMONY ===================== */  #page-ceremony {    background: var(--off-white);    padding: 100px 20px;    position: relative;    overflow: hidden;  }
-  .ceremony-inner {    max-width: 900px;    margin: 0 auto;    display: grid;    grid-template-columns: 1fr 2fr;    gap: 60px;    align-items: start;  }
-  .ceremony-left { text-align: left; }
-  .ceremony-section-label {    font-family: 'Cinzel Decorative', serif;    font-size: 0.8rem;    color: var(--gold);    letter-spacing: 6px;    text-transform: uppercase;    display: block;    margin-bottom: 15px;  }
-  .ceremony-heading {    font-family: 'Cormorant Garamond', serif;    font-size: clamp(1.5rem, 4vw, 2.8rem);    color: var(--black);    font-weight: 400;    line-height: 1.3;    margin-bottom: 10px;  }
-  .ceremony-heading em {    font-style: italic;    color: var(--gold);    font-family: 'Great Vibes', cursive;    font-size: 1.4em;  }
-  .ceremony-desc {    font-family: 'Cormorant Garamond', serif;    font-size: 1rem;    color: var(--gold);    line-height: 1.8;    font-style: italic;    margin-top: 20px;  }
-  .timeline-axis {    position: relative;    padding-left: 40px;  }
-  .timeline-axis::before {    content: '';    position: absolute;    left: 18px;    top: 20px;    bottom: 20px;    width: 1px;    background: linear-gradient(to bottom, transparent, var(--gold), var(--gold), transparent);    opacity: 0.4;  }
-  .timeline-item {    display: flex;    align-items: flex-start;    gap: 20px;    margin-bottom: 50px;    position: relative;  }
-  .timeline-icon {    width: 36px;    height: 36px;    border-radius: 50%;    border: 1.5px solid var(--gold);    background: var(--white);    display: flex;    align-items: center;    justify-content: center;    flex-shrink: 0;    position: absolute;    left: -40px;    top: 0;    color: var(--gold);    font-size: 1rem;  }
-  .timeline-content {}
-  .timeline-main {    font-family: 'Cinzel', serif;    font-size: clamp(1.1rem, 2.5vw, 1.5rem);    color: var(--gold);    font-weight: 600;    line-height: 1.3;  }
-  .timeline-sub {    font-family: 'Cormorant Garamond', serif;    font-style: italic;    font-size: 1rem;    color: var(--gold-dark);    margin-top: 4px;  }
-  .petals-deco {    position: absolute;    right: 0;    top: 0;    width: 200px;    height: 100%;    pointer-events: none;    opacity: 0.15;  }
-  /* ===================== PAGE 6 – LOCATION ===================== */  #page-location {    background: var(--white);    padding: 100px 20px;    text-align: center;  }
-  .location-title {    font-family: 'Cormorant Garamond', serif;    font-size: clamp(2rem, 5vw, 3.5rem);    font-weight: 600;    color: var(--black);    margin-bottom: 5px;  }
-  .location-title em { font-style: italic; color: var(--black); }
-  .location-title span {    color: var(--black);    font-style: normal;  }
-  .location-card {    max-width: 600px;    margin: 40px auto 0;    background: var(--off-white);    border: 1px solid rgba(201,168,76,0.3);    border-radius: 16px;    padding: 40px;    box-shadow: 0 15px 50px rgba(201,168,76,0.1);  }
-  .location-icon-wrap {    font-size: 2rem;    color: var(--gold);    margin-bottom: 15px;  }
-  .location-name {    font-family: 'Cinzel', serif;    font-size: clamp(1.1rem, 2.5vw, 1.5rem);    color: var(--gold);    font-weight: 600;    letter-spacing: 2px;    margin-bottom: 8px;  }
-  .location-place {    font-family: 'Cormorant Garamond', serif;    font-style: italic;    color: #888;    font-size: 1rem;    margin-bottom: 30px;  }
-  .map-embed {    width: 100%;    height: 280px;    border-radius: 12px;    border: none;    margin-bottom: 20px;    overflow: hidden;  }
-  .directions-btn {    display: inline-block;    padding: 14px 45px;    background: transparent;    border: 1.5px solid var(--gold);    color: var(--gold);    font-family: 'Cinzel', serif;    font-size: 0.8rem;    letter-spacing: 4px;    text-transform: uppercase;    cursor: pointer;    text-decoration: none;    transition: all 0.4s ease;    border-radius: 4px;  }
-  .directions-btn:hover {    background: var(--gold);    color: white;  }
-  /* ===================== PAGE 7 – RSVP ===================== */  #page-rsvp {    background: var(--off-white);    padding: 100px 20px;    text-align: center;    position: relative;  }
-  .rsvp-gold-line {    width: 100%;    height: 1px;    background: linear-gradient(to right, transparent, var(--gold), transparent);    margin-bottom: 60px;  }
-  .rsvp-label {    font-family: 'Cinzel Decorative', serif;    font-size: clamp(1rem, 2.5vw, 1.3rem);    color: var(--gold);    letter-spacing: 8px;    text-transform: uppercase;    margin-bottom: 20px;  }
-  .rsvp-body {    font-family: 'Cormorant Garamond', serif;    font-size: 1.1rem;    color: #666;    font-style: italic;    max-width: 500px;    margin: 0 auto 50px;    line-height: 1.8;  }
-  .rsvp-form {    max-width: 500px;    margin: 0 auto;    text-align: left;  }
-  .rsvp-field-label {    font-family: 'Cinzel', serif;    font-size: 0.75rem;    color: var(--gold);    letter-spacing: 3px;    text-transform: uppercase;    display: block;    margin-bottom: 8px;  }
-  .rsvp-input {    width: 100%;    padding: 14px 18px;    background: var(--white);    border: 1px solid rgba(201,168,76,0.4);    border-radius: 6px;    font-family: 'Cormorant Garamond', serif;    font-size: 1rem;    color: var(--black);    margin-bottom: 30px;    outline: none;    transition: border-color 0.3s;  }
-  .rsvp-input:focus { border-color: var(--gold); }
-  .rsvp-attend-label {    font-family: 'Cinzel', serif;    font-size: 0.75rem;    color: var(--gold);    letter-spacing: 3px;    text-transform: uppercase;    margin-bottom: 15px;    display: block;  }
-  .rsvp-options {    display: flex;    gap: 20px;    margin-bottom: 35px;  }
-  .rsvp-option {    flex: 1;    padding: 16px;    border: 1.5px solid rgba(201,168,76,0.3);    border-radius: 8px;    text-align: center;    cursor: pointer;    transition: all 0.3s ease;    background: var(--white);  }
-  .rsvp-option.selected {    border-color: var(--gold);    background: rgba(201,168,76,0.08);  }
-  .rsvp-option-label {    font-family: 'Cinzel', serif;    font-size: 0.8rem;    color: var(--gold);    letter-spacing: 3px;    text-transform: uppercase;  }
-  .rsvp-checkbox {    width: 18px;    height: 18px;    border: 1.5px solid var(--gold);    border-radius: 50%;    display: inline-block;    vertical-align: middle;    margin-right: 8px;    position: relative;  }
-  .rsvp-option.selected .rsvp-checkbox::after {    content: '';    position: absolute;    inset: 3px;    border-radius: 50%;    background: var(--gold);  }
-  .rsvp-submit {    width: 100%;    padding: 16px;    background: transparent;    border: 1.5px solid var(--gold);    color: var(--gold);    font-family: 'Cinzel', serif;    font-size: 0.8rem;    letter-spacing: 5px;    text-transform: uppercase;    cursor: pointer;    transition: all 0.4s ease;    border-radius: 6px;  }
-  .rsvp-submit:hover {    background: var(--gold);    color: white;  }
-  .rsvp-success {    display: none;    font-family: 'Cormorant Garamond', serif;    font-size: 1.3rem;    color: var(--gold);    font-style: italic;    text-align: center;    padding: 30px;  }
-  /* ===================== PAGE 8 – MONOGRAM ===================== */  #page-monogram {    background: var(--white);    padding: 100px 20px;    text-align: center;    position: relative;  }
-  .monogram-circle {    width: 220px;    height: 220px;    border: 2px solid var(--gold);    border-radius: 50%;    display: flex;    align-items: center;    justify-content: center;    margin: 0 auto 30px;    position: relative;    box-shadow: 0 0 50px rgba(201,168,76,0.15);  }
-  .monogram-circle::before {    content: '';    position: absolute;    inset: 8px;    border-radius: 50%;    border: 1px solid rgba(201,168,76,0.3);  }
-  .monogram-text {    font-family: 'Cinzel Decorative', serif;    font-size: 4rem;    color: var(--gold);    font-weight: 700;    letter-spacing: 2px;    position: relative;  }
-  .monogram-heart {    position: absolute;    top: -18px;    left: 50%;    transform: translateX(-50%);    color: var(--gold);    font-size: 1.8rem;    animation: heartbeat 1.5s ease infinite;  }
-  .monogram-amp-pos {    position: relative;    display: inline-block;  }
-  .monogram-date {    font-family: 'Cormorant Garamond', serif;    font-style: italic;    color: #aaa;    font-size: 1rem;    letter-spacing: 4px;  }
-  /* ===================== PAGE 9 – CONTACT ===================== */  #page-contact {    background: var(--off-white);    padding: 80px 20px;    text-align: center;  }
-  .contact-label {    font-family: 'Cinzel', serif;    font-size: 0.75rem;    color: var(--gold);    letter-spacing: 6px;    text-transform: uppercase;    margin-bottom: 30px;  }
-  .contact-card {    display: inline-flex;    align-items: center;    gap: 15px;    background: var(--white);    border: 1px solid rgba(201,168,76,0.3);    border-radius: 12px;    padding: 25px 40px;    box-shadow: 0 8px 30px rgba(201,168,76,0.08);  }
-  .contact-role {    font-family: 'Cinzel', serif;    font-size: 0.7rem;    color: #aaa;    letter-spacing: 3px;    text-transform: uppercase;    margin-bottom: 5px;  }
-  .contact-phone {    font-family: 'Cormorant Garamond', serif;    font-size: 1.4rem;    color: var(--gold);    font-weight: 600;    letter-spacing: 2px;  }
-  .contact-icon {    width: 46px;    height: 46px;    border-radius: 50%;    border: 1px solid var(--gold);    display: flex;    align-items: center;    justify-content: center;    color: var(--gold);    font-size: 1.2rem;    flex-shrink: 0;  }
-  .footer-note {    font-family: 'Cormorant Garamond', serif;    font-style: italic;    color: #ccc;    font-size: 0.9rem;    margin-top: 50px;    letter-spacing: 2px;  }
-  /* ===================== AUDIO ===================== */  #bg-audio { display: none; }
-  /* ===================== SECTION FADE-IN ===================== */  .fade-section {    opacity: 0;    transform: translateY(30px);    transition: opacity 0.9s ease, transform 0.9s ease;  }
-  .fade-section.visible {    opacity: 1;    transform: translateY(0);  }
-  @media (max-width: 700px) {    .ceremony-inner {      grid-template-columns: 1fr;      gap: 30px;    }
-    .timeline-axis { padding-left: 50px; }
-    .countdown-grid { gap: 12px; }    .countdown-box { min-width: 80px; padding: 20px 15px; }  }</style></head><body>
+
+  /* ===================== PAGE 1 – LANDING ===================== */  
+  #page-landing {    
+    position: fixed;    top: 0; left: 0;    width: 100%; height: 100%;    
+    background: var(--white);    
+    display: flex;    flex-direction: column;    align-items: center;    justify-content: center;    
+    padding: 20px; /* Padding for mobile edges */
+    z-index: 1000;    transition: opacity 1.2s ease, filter 1.2s ease;  
+  }
+  #page-landing.blur-out { opacity: 0; filter: blur(20px); pointer-events: none; }
+  .landing-ornament { color: var(--gold); font-size: 0.9rem; letter-spacing: 5px; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s ease 0.3s forwards; }
+  .landing-name { font-family: 'Cinzel Decorative', serif; font-size: clamp(2.5rem, 12vw, 5rem); font-weight: 700; color: var(--gold); text-shadow: 0 2px 15px rgba(201,168,76,0.2); letter-spacing: 2px; line-height: 1.1; opacity: 0; animation: fadeUp 1s ease 0.6s forwards; }
+  .landing-amp { font-family: 'Great Vibes', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--gold-dark); margin: 5px 0; opacity: 0; animation: fadeUp 1s ease 0.9s forwards; }
+  .landing-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #888; font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-top: 20px; opacity: 0; animation: fadeUp 1s ease 1.4s forwards; }
+  .enter-btn { margin-top: 40px; padding: 14px 50px; background: transparent; border: 1.5px solid var(--gold); color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; cursor: pointer; transition: all 0.4s ease; opacity: 0; animation: fadeUp 1s ease 1.8s forwards; }
+
+  /* ===================== MAIN CONTENT ===================== */  
+  #main-content { display: none; opacity: 0; transition: opacity 1s ease 0.3s; }
+  #main-content.visible { display: block; opacity: 1; }
+
+  /* ===================== PAGE 2 – VIDEO HERO ===================== */  
+  #page-video { position: relative; width: 100%; height: 100vh; overflow: hidden; background: #000; }
+  #bg-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover; opacity: 0.6; z-index: 1; }
+  .video-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; z-index: 2; }
+  .video-name { font-family: 'Cinzel Decorative', serif; font-size: clamp(2.5rem, 10vw, 5rem); color: var(--gold-light); text-shadow: 0 0 20px rgba(0,0,0,0.5); letter-spacing: 2px; opacity: 0; transform: translateY(20px); transition: 1.4s ease; }
+  .video-amp { font-family: 'Great Vibes', cursive; font-size: clamp(1.8rem, 7vw, 3rem); color: #fff; opacity: 0; transition: 1s ease; }
+  .video-date { font-family: 'Cinzel', serif; color: var(--gold-light); font-size: clamp(1rem, 4vw, 1.5rem); letter-spacing: 4px; margin-top: 10px; opacity: 0; transition: 1.2s ease; }
+  .video-name.show, .video-amp.show, .video-date.show { opacity: 1; transform: translateY(0); }
+
+  /* ===================== PAGE 3 – INVITATION ===================== */  
+  #page-invite { background: var(--off-white); padding: 80px 20px; position: relative; }
+  .couple-names-large { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 8vw, 4rem); color: var(--gold); line-height: 1.2; }
+  .invite-body { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #555; max-width: 500px; margin: 25px auto; line-height: 1.7; font-style: italic; padding: 0 10px; }
+
+  /* ===================== PAGE 4 – COUNTDOWN ===================== */  
+  #page-countdown { padding: 80px 10px; background: #fff; }
+  .countdown-grid { display: flex; justify-content: center; gap: 10px; flex-wrap: nowrap; }
+  .countdown-box { background: var(--off-white); border: 1px solid rgba(201,168,76,0.2); padding: 15px 10px; min-width: 75px; flex: 1; max-width: 90px; border-radius: 8px; }
+  .countdown-number { font-size: 1.8rem; color: var(--gold); font-family: 'Cinzel Decorative'; }
+  .countdown-label { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: #999; }
+
+  /* ===================== PAGE 5 – CEREMONY ===================== */  
+  #page-ceremony { padding: 80px 20px; background: var(--off-white); }
+  .ceremony-inner { max-width: 600px; margin: 0 auto; }
+  .timeline-axis { position: relative; padding-left: 0; margin-top: 40px; display: flex; flex-direction: column; align-items: center; }
+  .timeline-item { margin-bottom: 40px; width: 100%; }
+  .timeline-main { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); font-weight: 600; }
+  .timeline-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #777; margin-top: 5px; }
+
+  /* ===================== PAGE 6 – LOCATION ===================== */  
+  #page-location { padding: 80px 20px; }
+  .location-card { max-width: 100%; background: var(--off-white); border-radius: 12px; padding: 25px 15px; border: 1px solid rgba(201,168,76,0.2); }
+  .map-embed { width: 100%; height: 250px; border-radius: 8px; margin-bottom: 20px; border: none; }
+
+  /* ===================== RSVP FORM ===================== */
+  .rsvp-input { width: 100%; max-width: 400px; margin: 0 auto 20px auto; display: block; padding: 12px; border: 1px solid var(--gold); border-radius: 4px; }
+  .rsvp-options { display: flex; gap: 10px; justify-content: center; margin-bottom: 30px; }
+  .rsvp-option { padding: 12px 25px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; min-width: 100px; }
+  .rsvp-option.selected { background: var(--gold); color: white; }
+
+  /* Animations */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-section { opacity: 0; transform: translateY(20px); transition: 0.8s ease; }
+  .fade-section.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 480px) {
+    .landing-ornament { font-size: 0.7rem; letter-spacing: 3px; }
+    .countdown-grid { gap: 5px; }
+    .countdown-box { min-width: 65px; padding: 10px 5px; }
+    .countdown-number { font-size: 1.4rem; }
+  }
+  </style>
+</head>
+<body>
 
 <audio id="bg-audio" loop>
   <source src="music.mp3" type="audio/mpeg">
@@ -130,257 +103,146 @@
 <div class="petals-container" id="petalsContainer"></div>
 
 <div id="page-landing">
-  <div class="landing-ornament">✦   WEDDING INVITATION   ✦</div>
+  <div class="landing-ornament">✦ WEDDING INVITATION ✦</div>
   <div class="landing-name">Vinoli</div>
   <span class="landing-amp">&</span>
-  <div class="landing-name landing-name-2">Manjitha</div>
+  <div class="landing-name">Manjitha</div>
   <div class="landing-sub">30 · 07 · 2026</div>
-  <button class="enter-btn" id="enterBtn">Enter</button>
+  <button class="enter-btn" id="enterBtn">Open Invitation</button>
 </div>
 
 <div id="main-content">
-
   <section id="page-video">
     <video id="bg-video" autoplay loop muted playsinline preload="auto">
       <source src="wedding-bg.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
     <div class="video-overlay">
-      <div class="video-text" id="vt1">Wedding Of</div>
-      <div class="video-name" id="vt2">Vinoli</div>
-      <div class="video-amp" id="vt3">&</div>
-      <div class="video-name" id="vt4">Manjitha</div>
-      <div class="video-date" id="vt5">30 · 07 · 2026</div>
-    </div>
-    <div class="scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-arrow"></div>
+      <div class="video-name" id="vt2">Vinoli & Manjitha</div>
+      <div class="video-date" id="vt5">30.07.2026</div>
     </div>
   </section>
 
   <section id="page-invite">
     <div class="fade-section" id="sec-invite">
-      <div class="divider">
-        <div class="divider-line"></div>
-        <span class="divider-heart">♥</span>
-        <div class="divider-line"></div>
-      </div>
-      <div class="section-label">The Celebration of Love</div>
-      <div class="couple-names-large">
-        Vinoli<br>
-        <span class="couple-amp">&</span>
-        Manjitha
-      </div>
-      <p class="invite-body">Together with their families, we joyfully invite you to our wedding ceremony</p>
-      <div class="date-badge">
-        <span>30.07.2026</span>
-      </div>
+      <div class="couple-names-large">Vinoli & Manjitha</div>
+      <p class="invite-body">Together with our families, we invite you to celebrate our union. Your presence would make our day truly special.</p>
+      <div style="font-family: 'Cinzel'; color: var(--gold); letter-spacing: 3px;">JULY 30, 2026</div>
     </div>
   </section>
 
   <section id="page-countdown">
     <div class="fade-section" id="sec-countdown">
-      <div class="countdown-title">The Final Countdown</div>
-      <div class="countdown-heading">Until We Say <em>"I Do"</em></div>
-      <div class="countdown-sub">Time is standing still as we eagerly await the moment our forever begins</div>
-      <div class="countdown-grid" id="countdownGrid">
-        <div class="countdown-box" id="cd-days">
-          <span class="countdown-number" id="days">00</span>
-          <span class="countdown-label">Days</span>
-        </div>
-        <div class="countdown-box" id="cd-hours">
-          <span class="countdown-number" id="hours">00</span>
-          <span class="countdown-label">Hours</span>
-        </div>
-        <div class="countdown-box" id="cd-mins">
-          <span class="countdown-number" id="minutes">00</span>
-          <span class="countdown-label">Minutes</span>
-        </div>
-        <div class="countdown-box" id="cd-secs">
-          <span class="countdown-number" id="seconds">00</span>
-          <span class="countdown-label">Seconds</span>
-        </div>
+      <h2 style="font-family: 'Cinzel Decorative'; margin-bottom: 30px; font-size: 1.2rem; color: var(--gold);">Counting Down</h2>
+      <div class="countdown-grid">
+        <div class="countdown-box"><span class="countdown-number" id="days">00</span><br><span class="countdown-label">Days</span></div>
+        <div class="countdown-box"><span class="countdown-number" id="hours">00</span><br><span class="countdown-label">Hrs</span></div>
+        <div class="countdown-box"><span class="countdown-number" id="minutes">00</span><br><span class="countdown-label">Min</span></div>
+        <div class="countdown-box"><span class="countdown-number" id="seconds">00</span><br><span class="countdown-label">Sec</span></div>
       </div>
     </div>
   </section>
 
   <section id="page-ceremony">
-    <svg class="petals-deco" viewBox="0 0 200 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <ellipse cx="120" cy="80" rx="18" ry="10" fill="#E8B4B8" transform="rotate(30 120 80)" opacity="0.5"/>
-      <ellipse cx="160" cy="150" rx="14" ry="8" fill="#F4C2C2" transform="rotate(-20 160 150)" opacity="0.4"/>
-      <ellipse cx="80" cy="220" rx="20" ry="11" fill="#E8B4B8" transform="rotate(50 80 220)" opacity="0.3"/>
-      <ellipse cx="150" cy="300" rx="16" ry="9" fill="#FFCCCC" transform="rotate(-40 150 300)" opacity="0.5"/>
-      <ellipse cx="100" cy="380" rx="12" ry="7" fill="#F4A0A0" transform="rotate(20 100 380)" opacity="0.4"/>
-      <ellipse cx="170" cy="450" rx="18" ry="10" fill="#E8B4B8" transform="rotate(-30 170 450)" opacity="0.3"/>
-      <ellipse cx="60" cy="530" rx="14" ry="8" fill="#FFCCCC" transform="rotate(60 60 530)" opacity="0.5"/>
-      <ellipse cx="140" cy="610" rx="16" ry="9" fill="#F4C2C2" transform="rotate(-10 140 610)" opacity="0.4"/>
-      <ellipse cx="90" cy="700" rx="20" ry="11" fill="#E8B4B8" transform="rotate(40 90 700)" opacity="0.3"/>
-    </svg>
     <div class="fade-section" id="sec-ceremony">
-      <div class="ceremony-inner">
-        <div class="ceremony-left">
-          <span class="ceremony-section-label">The Sacred Union</span>
-          <h2 class="ceremony-heading">A Celebration Of<br><em>Tradition & Love</em></h2>
-          <p class="ceremony-desc">We are honored to invite you to witness our union as we exchange vows in a traditional poruwa ceremony, surrounded by the beauty of nature and the warmth of our loved ones.</p>
+      <h2 style="font-family: 'Cinzel Decorative'; color: var(--gold);">The Ceremony</h2>
+      <div class="timeline-axis">
+        <div class="timeline-item">
+          <div class="timeline-main">5:00 PM - Poruwa Ceremony</div>
+          <div class="timeline-sub">The Blue Water Hotel and Spa, Wadduwa</div>
         </div>
-        <div class="timeline-axis">
-          <div class="timeline-item">
-            <div class="timeline-icon">📅</div>
-            <div class="timeline-content">
-              <div class="timeline-main">Thursday, July 30</div>
-              <div class="timeline-sub">Two Thousand & Twenty Six</div>
-            </div>
-          </div>
-          <div class="timeline-item">            <div class="timeline-icon">🕐</div>            <div class="timeline-content">              <div class="timeline-main">5:00 PM – 6:30 PM · Outdoor Venue</div>              <div class="timeline-sub">Poruwa Ceremony</div>            </div>          </div>          <div class="timeline-item">            <div class="timeline-icon">📍</div>            <div class="timeline-content">              <div class="timeline-main">The Blue Water Hotel and Spa</div>              <div class="timeline-sub">Wadduwa, Sri Lanka</div>            </div>          </div>        </div>      </div>    </div>  </section>
+        <div class="timeline-item">
+          <div class="timeline-main">7:30 PM - Dinner & Reception</div>
+          <div class="timeline-sub">Grand Ballroom</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section id="page-location">    <div class="fade-section" id="sec-location">      <h2 class="location-title">Where We <strong>Celebrate</strong></h2>      <div class="location-card">        <div class="location-icon-wrap">📍</div>        <div class="location-name">The Blue Water Hotel and Spa</div>        <div class="location-place">Wadduwa, Sri Lanka</div>        <iframe          class="map-embed"          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.1!2d79.8763!3d6.6095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae24c4c1e6f63f7%3A0x4c34a0c94da0b6e2!2sThe%20Blue%20Water%20Hotel%20%26%20Spa!5e0!3m2!1sen!2slk!4v1700000000000!5m2!1sen!2slk"          allowfullscreen=""          loading="lazy"          referrerpolicy="no-referrer-when-downgrade"          title="The Blue Water Hotel and Spa location map">        </iframe>        <a class="directions-btn" href="https://www.google.com/maps/dir/?api=1&destination=The+Blue+Water+Hotel+and+Spa,+Wadduwa,+Sri+Lanka" target="_blank" rel="noopener">          Get Directions        </a>      </div>    </div>  </section>
+  <section id="page-location">
+    <div class="fade-section" id="sec-location">
+      <div class="location-card">
+        <h3 style="font-family: 'Cinzel'; color: var(--gold); margin-bottom: 15px;">Location</h3>
+        <iframe class="map-embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.7712345!2d79.935!3d6.657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzknMjUuMiJOIDc5wrA1NicwNi4wIkU!5e0!3m2!1sen!2slk!4v1622600000000"></iframe>
+        <a href="https://maps.google.com" target="_blank" style="color: var(--gold); text-decoration: none; border: 1px solid var(--gold); padding: 10px 20px; display: inline-block;">View on Maps</a>
+      </div>
+    </div>
+  </section>
 
-  <section id="page-rsvp">    <div class="rsvp-gold-line"></div>    <div class="fade-section" id="sec-rsvp">      <div class="rsvp-label">Kindly Respond</div>      <p class="rsvp-body">Your presence means the world to us. Please kindly let us know if you will be able to join our celebration.</p>      <div class="rsvp-form" id="rsvpForm">        <label class="rsvp-field-label">Full Name</label>        <input class="rsvp-input" type="text" id="rsvpName" placeholder="Enter your full name">        <span class="rsvp-attend-label">Will you be attending?</span>        <div class="rsvp-options">          <div class="rsvp-option" id="optYes" onclick="selectAttend('yes')">            <span class="rsvp-checkbox" id="chkYes"></span>            <span class="rsvp-option-label">Yes</span>          </div>          <div class="rsvp-option" id="optNo" onclick="selectAttend('no')">            <span class="rsvp-checkbox" id="chkNo"></span>            <span class="rsvp-option-label">No</span>          </div>        </div>        <button class="rsvp-submit" onclick="submitRSVP()">Send RSVP</button>      </div>      <div class="rsvp-success" id="rsvpSuccess">        ♥   Thank you! We look forward to celebrating with you.   ♥      </div>    </div>  </section>
-
-  <section id="page-monogram">    <div class="fade-section" id="sec-mono">      <div class="monogram-circle">        <div class="monogram-heart">♥</div>         <div class="monogram-text">V <span style="font-family:'Great Vibes';font-size:0.7em;color:var(--gold-dark)">&</span> M</div>      </div>      <div class="monogram-date">30 · 07 · 2026</div>    </div>  </section>
-
-  <section id="page-contact">    <div class="fade-section" id="sec-contact">      <div class="contact-label">For More Details, Contact</div>      <div class="contact-card">        <div class="contact-icon">📞</div>        <div>          <div class="contact-role">Bride's Mother</div>          <div class="contact-phone">076 797 3273</div>        </div>      </div>      <p class="footer-note">Vinoli & Manjitha · 30 July 2026</p>    </div>  </section>
-
+  <section style="padding: 80px 20px; background: var(--off-white);">
+    <div class="fade-section" id="sec-rsvp">
+      <h2 style="font-family: 'Cinzel Decorative'; color: var(--gold); margin-bottom: 20px;">RSVP</h2>
+      <input type="text" class="rsvp-input" placeholder="Your Full Name">
+      <div class="rsvp-options">
+        <div class="rsvp-option" id="optYes" onclick="selectAttend('yes')">Attending</div>
+        <div class="rsvp-option" id="optNo" onclick="selectAttend('no')">Regretfully Decline</div>
+      </div>
+      <button style="background: var(--gold); color: white; border: none; padding: 12px 40px; font-family: 'Cinzel'; cursor: pointer;">Submit</button>
+    </div>
+  </section>
 </div>
 
 <script>
-// =================== ENTER BUTTON ===================
 let attendSelected = null;
+const enterBtn = document.getElementById('enterBtn');
 
-document.getElementById('enterBtn').addEventListener('click', function() {  
-  const landing = document.getElementById('page-landing');  
-  const main = document.getElementById('main-content');
-  const video = document.getElementById('bg-video');
-
-  landing.classList.add('blur-out');
-  setTimeout(function() {    
-    landing.style.display = 'none';    
-    main.style.display = 'block';    
-    setTimeout(function() {      
-      main.style.opacity = '1';      
-      triggerVideoText();
+enterBtn.addEventListener('click', function() {  
+  document.getElementById('page-landing').classList.add('blur-out');
+  const audio = document.getElementById('bg-audio');
+  audio.play().catch(() => {});
+  
+  setTimeout(() => {    
+    document.getElementById('page-landing').style.display = 'none';    
+    document.getElementById('main-content').style.display = 'block';    
+    setTimeout(() => {      
+      document.getElementById('main-content').classList.add('visible');      
+      document.getElementById('vt2').classList.add('show');
+      document.getElementById('vt5').classList.add('show');
       createPetals();
-      
-      // Force video play inside user interaction callback
-      if (video) {
-        video.muted = true; // Essential override for background play rules
-        video.play().catch(function(error) {
-          console.error("Video element failed to play dynamically:", error);
-        });
-      }
+      const video = document.getElementById('bg-video');
+      if (video) { video.play().catch(() => {}); }
     }, 50);  
-  }, 1300);
-
-  // Try to play background audio
-  const audio = document.getElementById('bg-audio');  
-  audio.play().catch(function(){});
+  }, 1200);
 });
 
-// =================== VIDEO TEXT ANIMATION ===================
-function triggerVideoText() {  
-  const els = ['vt1','vt2','vt3','vt4','vt5'];  
-  els.forEach(function(id, i) {    
-    setTimeout(function() {      
-      const element = document.getElementById(id);
-      if(element) element.classList.add('show');    
-    }, 400 + i * 600);  
-  });
-}
-
-// =================== COUNTDOWN ===================
 function updateCountdown() {  
   const wedding = new Date('2026-07-30T17:00:00');  
   const now = new Date();  
   const diff = wedding - now;
-
-  if (diff <= 0) {    
-    document.getElementById('days').textContent = '00';    
-    document.getElementById('hours').textContent = '00';    
-    document.getElementById('minutes').textContent = '00';    
-    document.getElementById('seconds').textContent = '00';    
-    return;  
-  }
-
-  const d = Math.floor(diff / (1000*60*60*24));  
-  const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));  
-  const m = Math.floor((diff % (1000*60*60)) / (1000*60));  
-  const s = Math.floor((diff % (1000*60)) / 1000);
-
-  document.getElementById('days').textContent = String(d).padStart(2,'0');  
-  document.getElementById('hours').textContent = String(h).padStart(2,'0');  
-  document.getElementById('minutes').textContent = String(m).padStart(2,'0');  
-  document.getElementById('seconds').textContent = String(s).padStart(2,'0');
+  if (diff <= 0) return;
+  document.getElementById('days').textContent = String(Math.floor(diff / 86400000)).padStart(2,'0');  
+  document.getElementById('hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');  
+  document.getElementById('minutes').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');  
+  document.getElementById('seconds').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
 }
-updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// =================== RSVP INTERACTION ===================
-function selectAttend(option) {
-  attendSelected = option;
-  const optYes = document.getElementById('optYes');
-  const optNo = document.getElementById('optNo');
-  
-  if(option === 'yes') {
-    optYes.classList.add('selected');
-    optNo.classList.remove('selected');
-  } else {
-    optNo.classList.add('selected');
-    optYes.classList.remove('selected');
-  }
+function selectAttend(opt) {
+  attendSelected = opt;
+  document.getElementById('optYes').classList.toggle('selected', opt === 'yes');
+  document.getElementById('optNo').classList.toggle('selected', opt === 'no');
 }
 
-function submitRSVP() {
-  const name = document.getElementById('rsvpName').value.trim();
-  if(!name) {
-    alert('Please enter your full name.');
-    return;
-  }
-  if(!attendSelected) {
-    alert('Please select your attendance.');
-    return;
-  }
-  document.getElementById('rsvpForm').style.display = 'none';
-  document.getElementById('rsvpSuccess').style.display = 'block';
-}
-
-// =================== FALLING PETALS ENGINE ===================
 function createPetals() {
   const container = document.getElementById('petalsContainer');
-  const totalPetals = 25;
-  const colors = ['#E8B4B8', '#F4C2C2', '#FFCCCC', '#F4A0A0'];
-
-  for (let i = 0; i < totalPetals; i++) {
+  for (let i = 0; i < 20; i++) {
     const petal = document.createElement('div');
     petal.classList.add('petal');
     const size = Math.random() * 15 + 10;
-    petal.style.width = size + 'px';
-    petal.style.height = size + 'px';
+    petal.style.width = size + 'px'; petal.style.height = size + 'px';
     petal.style.left = Math.random() * 100 + 'vw';
-    petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    petal.style.backgroundColor = ['#E8B4B8', '#F4C2C2', '#FFCCCC'][Math.floor(Math.random() * 3)];
     petal.style.animationDuration = Math.random() * 5 + 5 + 's';
-    petal.style.animationDelay = Math.random() * 5 + 's';
     container.appendChild(petal);
   }
 }
 
-// =================== SCROLL ANIMATIONS ===================
-const fadeIds = ['sec-invite','sec-countdown','sec-ceremony','sec-location','sec-rsvp','sec-mono','sec-contact'];
-
-window.addEventListener('scroll', checkSections);
-window.addEventListener('resize', checkSections);
-
-function checkSections() {
-  const triggerBottom = window.innerHeight * 0.85;
-  fadeIds.forEach(function(id) {
+window.addEventListener('scroll', () => {
+  const trigger = window.innerHeight * 0.9;
+  ['sec-invite','sec-countdown','sec-ceremony','sec-location','sec-rsvp'].forEach(id => {
     const el = document.getElementById(id);
-    if(el) {
-      const top = el.getBoundingClientRect().top;
-      if(top < triggerBottom) {
-        el.classList.add('visible');
-      }
-    }
+    if(el && el.getBoundingClientRect().top < trigger) el.classList.add('visible');
   });
-}
+});
 </script>
 </body>
 </html>
