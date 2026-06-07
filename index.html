@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vinoli & Manjitha – Wedding Invitation</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<!-- Animation Engines: Three.js for 3D graphics & GSAP for particle timelines -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -67,6 +71,39 @@
     justify-content: center;
     z-index: 1000;
     transition: opacity 1.2s ease, filter 1.2s ease;
+    overflow: hidden;
+  }
+
+  /* Three.js Canvas Container Layer */
+  #intro-canvas-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+  }
+
+  /* Target text styling inside layout wrapper to overlap nicely over canvas */
+  .landing-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+  }
+
+  /* Hidden Source SVG Vector Elements to generate points coordinates from */
+  #intro-svg-source {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
   }
 
   #page-landing.blur-out {
@@ -1044,12 +1081,23 @@
 
 <!-- ========== PAGE 1: LANDING ========== -->
 <div id="page-landing">
-  <div class="landing-ornament">✦ &nbsp; WEDDING INVITATION &nbsp; ✦</div>
-  <div class="landing-name">Vinoli</div>
-  <span class="landing-amp">&</span>
-  <div class="landing-name landing-name-2">Manjitha</div>
-  <div class="landing-sub">30 · 07 · 2026</div>
-  <button class="enter-btn" id="enterBtn">Enter</button>
+  <!-- Hidden vector path coordinates layout used to track 3D vertex positions -->
+  <svg id="intro-svg-source" viewBox="0 0 600 552">
+    <path d="M70,100 L140,430 L210,100 M240,430 L240,100 L310,280 L380,100 L380,430" fill="none" stroke="black" stroke-width="2"/>
+  </svg>
+
+  <!-- 3D Particle Render Window -->
+  <div id="intro-canvas-container"></div>
+
+  <!-- Main text frame setup -->
+  <div class="landing-content-wrapper">
+    <div class="landing-ornament">✦ &nbsp; WEDDING INVITATION &nbsp; ✦</div>
+    <div class="landing-name">Vinoli</div>
+    <span class="landing-amp">&</span>
+    <div class="landing-name landing-name-2">Manjitha</div>
+    <div class="landing-sub">30 · 07 · 2026</div>
+    <button class="enter-btn" id="enterBtn">Enter</button>
+  </div>
 </div>
 
 <!-- ========== MAIN CONTENT ========== -->
@@ -1057,7 +1105,7 @@
 
   <!-- PAGE 2: VIDEO HERO -->
   <section id="page-video">
-    <video id="bg-video" autoplay muted loop playsinline>
+    <video id="bg-video" muted loop playsinline>
       <source src="wedding-bg.mp4" type="video/mp4">
     </video>
     <div class="video-overlay">
@@ -1159,7 +1207,7 @@
             </div>
           </div>
           <div class="timeline-item">
-            <div class="timeline-icon">🕕</div>
+            <div class="timeline-icon">6:30 PM · At the Main Ballroom</div>
             <div class="timeline-content">
               <div class="timeline-main">6:30 PM · At the Main Ballroom</div>
               <div class="timeline-sub">Reception & Celebration</div>
@@ -1205,193 +1253,202 @@
     <div class="rsvp-gold-line"></div>
     <div class="fade-section" id="sec-rsvp">
       <div class="rsvp-label">Kindly Respond</div>
-      <p class="rsvp-body">Your presence means the world to us. Please kindly let us know if you will be able to join our celebration.</p>
-      <div class="rsvp-form" id="rsvpForm">
-        <label class="rsvp-field-label">Full Name</label>
-        <input class="rsvp-input" type="text" id="rsvpName" placeholder="Enter your full name">
-        <span class="rsvp-attend-label">Will you be attending?</span>
-        <div class="rsvp-options">
-          <div class="rsvp-option" id="optYes" onclick="selectAttend('yes')">
-            <span class="rsvp-checkbox" id="chkYes"></span>
-            <span class="rsvp-option-label">Yes</span>
-          </div>
-          <div class="rsvp-option" id="optNo" onclick="selectAttend('no')">
-            <span class="rsvp-checkbox" id="chkNo"></span>
-            <span class="rsvp-option-label">No</span>
-          </div>
-        </div>
-        <button class="rsvp-submit" onclick="submitRSVP()">Send RSVP</button>
-      </div>
-      <div class="rsvp-success" id="rsvpSuccess">
-        ♥ &nbsp; Thank you! We look forward to celebrating with you. &nbsp; ♥
-      </div>
     </div>
   </section>
+</div>
 
-  <!-- PAGE 8: CONTACT -->
-      </div>
-      <p class="footer-note">Vinoli & Manjitha · 30 July 2026</p>
-    </div>
-  </section>
-
-</div><!-- /main-content -->
-
+<!-- ===================== JAVASCRIPT SYSTEM LOOPS ===================== -->
 <script>
-// =================== ENTER BUTTON ===================
-let attendSelected = null;
+document.addEventListener("DOMContentLoaded", () => {
 
-document.getElementById('enterBtn').addEventListener('click', function() {
-  const landing = document.getElementById('page-landing');
-  const main = document.getElementById('main-content');
+  // --- 1. THREE.JS & GSAP INITIALS DISPERSION ANIMATION ---
+  const canvasContainer = document.getElementById("intro-canvas-container");
+  const sourcePath = document.querySelector("#intro-svg-source path");
 
-  landing.classList.add('blur-out');
+  if (canvasContainer && sourcePath) {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1500);
+    camera.position.z = 600;
 
-  setTimeout(function() {
-    landing.style.display = 'none';
-    main.style.display = 'block';
-    setTimeout(function() {
-      main.style.opacity = '1';
-      triggerVideoText();
-    }, 50);
-  }, 1300);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    canvasContainer.appendChild(renderer.domElement);
 
-  // Try to play audio
-  const audio = document.getElementById('bg-audio');
-  audio.play().catch(function(){});
-});
+    const length = sourcePath.getTotalLength();
+    const geometry = new THREE.BufferGeometry();
+    const positions = [];
+    const targets = [];
+    
+    // Instantiate your requested GSAP animation sequence timeline
+    const tl = gsap.timeline();
 
-// =================== VIDEO TEXT ANIMATION ===================
-function triggerVideoText() {
-  const els = ['vt1','vt2','vt3','vt4','vt5'];
-  els.forEach(function(id, i) {
-    setTimeout(function() {
-      document.getElementById(id).classList.add('show');
-    }, 400 + i * 600);
-  });
-}
+    // Map vector spacing properties incrementally 
+    for (let i = 0; i < length; i += 0.1) {
+      const point = sourcePath.getPointAtLength(i);
+      
+      // Center the geometric mapping metrics inside the 3D grid display window
+      const targetX = point.x - 300;
+      const targetY = -point.y + 276;
+      const targetZ = 0;
 
-// =================== COUNTDOWN ===================
-function updateCountdown() {
-  const wedding = new Date('2026-07-30T17:00:00');
-  const now = new Date();
-  const diff = wedding - now;
+      // Apply your exact mathematical layout rules to disperse particles outward
+      const startX = 600 / 2 + (Math.random() - 0.5) * 30;
+      const startY = -552 / 2 + (Math.random() - 0.5) * 30;
+      const startZ = 0 + (Math.random() - 0.5) * 70;
 
-  if (diff <= 0) {
-    document.getElementById('days').textContent = '00';
-    document.getElementById('hours').textContent = '00';
-    document.getElementById('minutes').textContent = '00';
-    document.getElementById('seconds').textContent = '00';
-    return;
+      positions.push(startX, startY, startZ);
+      targets.push({ x: targetX, y: targetY, z: targetZ });
+    }
+
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+
+    // Custom luxury gold particle texture matrix
+    const material = new THREE.PointsMaterial({
+      color: 0xC9A84C,
+      size: 2.5,
+      transparent: true,
+      opacity: 0.9,
+      blending: THREE.NormalBlending
+    });
+
+    const particleSystem = new THREE.Points(geometry, material);
+    scene.add(particleSystem);
+
+    // Apply the timeline animation parameters seamlessly to the position array properties
+    const posArr = geometry.attributes.position.array;
+    for (let i = 0; i < targets.length; i++) {
+      const idx = i * 3;
+
+      tl.to(posArr, {
+        [idx]: targets[i].x,
+        [idx + 1]: targets[i].y,
+        [idx + 2]: targets[i].z,
+        ease: "power2.inOut",
+        duration: gsap.utils.random(2, 5),
+        onUpdate: () => { geometry.attributes.position.needsUpdate = true; }
+      }, i * 0.002); // Exact custom incremental sequence delay loop
+    }
+
+    // Dynamic Render Loop Execution 
+    function renderIntroParticles() {
+      requestAnimationFrame(renderIntroParticles);
+      particleSystem.rotation.y += 0.0005; // Ambient slow spinning rotation
+      renderer.render(scene, camera);
+    }
+    renderIntroParticles();
+
+    // Handle viewport aspect changes gracefully
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
   }
 
-  const d = Math.floor(diff / (1000*60*60*24));
-  const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-  const m = Math.floor((diff % (1000*60*60)) / (1000*60));
-  const s = Math.floor((diff % (1000*60)) / 1000);
 
-  document.getElementById('days').textContent = String(d).padStart(2,'0');
-  document.getElementById('hours').textContent = String(h).padStart(2,'0');
-  document.getElementById('minutes').textContent = String(m).padStart(2,'0');
-  document.getElementById('seconds').textContent = String(s).padStart(2,'0');
-}
+  // --- 2. FALLING ROSE PETALS LOGIC ---
+  const petalsContainer = document.getElementById("petalsContainer");
+  const petalColors = ["#E8B4B8", "#F4C2C2", "#FFCCCC", "#F4A0A0"];
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+  function createPetal() {
+    if (!petalsContainer) return;
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+    
+    const size = Math.random() * 15 + 10;
+    petal.style.width = `${size}px`;
+    petal.style.height = `${size}px`;
+    petal.style.left = `${Math.random() * 100}vw`;
+    petal.style.backgroundColor = petalColors[Math.floor(Math.random() * petalColors.length)];
+    
+    const speed = Math.random() * 5 + 5;
+    petal.style.animationDuration = `${speed}s`;
+    
+    petalsContainer.appendChild(petal);
+    setTimeout(() => petal.remove(), speed * 1000);
+  }
+  setInterval(createPetal, 300);
 
-// =================== SCROLL ANIMATIONS ===================
-const fadeIds = ['sec-invite','sec-countdown','sec-ceremony','sec-location','sec-rsvp','sec-mono','sec-contact'];
 
-const observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+  // --- 3. PAGE TRANSITIONS & AUDIO CORE TRIGGERS ---
+  const enterBtn = document.getElementById("enterBtn");
+  const pageLanding = document.getElementById("page-landing");
+  const mainContent = document.getElementById("main-content");
+  const bgAudio = document.getElementById("bg-audio");
+  const bgVideo = document.getElementById("bg-video");
 
-      // Countdown boxes stagger
-      if (entry.target.id === 'sec-countdown') {
-        const boxes = ['cd-days','cd-hours','cd-mins','cd-secs'];
-        boxes.forEach(function(id, i) {
-          setTimeout(function() {
-            document.getElementById(id).classList.add('animate-in');
-          }, i * 200);
-        });
+  if (enterBtn && pageLanding && mainContent) {
+    enterBtn.addEventListener("click", () => {
+      // Trigger media assets loop safely
+      if (bgAudio) {
+        bgAudio.play().catch(e => console.log("Audio playback user permission pending:", e));
       }
-    }
-  });
-}, { threshold: 0.15 });
+      if (bgVideo) {
+        bgVideo.play();
+      }
 
-fadeIds.forEach(function(id) {
-  const el = document.getElementById(id);
-  if (el) observer.observe(el);
+      // Execute your blur-out panel transition styles
+      pageLanding.classList.add("blur-out");
+      mainContent.classList.add("visible");
+
+      // Stagger child section reveals on scroll index targets
+      setTimeout(() => {
+        pageLanding.style.display = "none";
+        triggerScrollReveal();
+      }, 1200);
+    });
+  }
+
+
+  // --- 4. WEDDING COUNTDOWN LOOP ---
+  function runCountdown() {
+    const targetDate = new Date("July 30, 2026 17:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff <= 0) return;
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+    document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+    document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+    document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+  }
+  setInterval(runCountdown, 1000);
+  runCountdown();
+
+
+  // --- 5. INTERSECTION OBSERVER FOR SCROLL REVEALS ---
+  function triggerScrollReveal() {
+    const fadeSections = document.querySelectorAll(".fade-section");
+    const videoTexts = document.querySelectorAll(".video-overlay > div");
+    
+    const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          entry.target.classList.add("show");
+          
+          // Cascading layout logic for the countdown boxes specifically
+          if (entry.target.id === "sec-countdown") {
+            document.querySelectorAll(".countdown-box").forEach((box, index) => {
+              setTimeout(() => box.classList.add("animate-in"), index * 150);
+            });
+          }
+        }
+      });
+    }, observerOptions);
+
+    fadeSections.forEach(sec => revealObserver.observe(sec));
+    videoTexts.forEach(txt => revealObserver.observe(txt));
+  }
 });
-
-// =================== RSVP ===================
-function selectAttend(val) {
-  attendSelected = val;
-  document.getElementById('optYes').classList.toggle('selected', val === 'yes');
-  document.getElementById('optNo').classList.toggle('selected', val === 'no');
-  document.getElementById('chkYes').classList.toggle('selected', val === 'yes');
-  document.getElementById('chkNo').classList.toggle('selected', val === 'no');
-}
-
-function submitRSVP() {
-  const name = document.getElementById('rsvpName').value.trim();
-  if (!name) { alert('Please enter your full name.'); return; }
-  if (!attendSelected) { alert('Please select whether you will be attending.'); return; }
-
-  const btn = document.querySelector('.rsvp-submit');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-
-  fetch('https://formspree.io/f/xdavkzry', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      name: name,
-      attending: attendSelected === 'yes' ? 'Yes, I will attend' : 'No, I cannot attend'
-    })
-  })
-  .then(function(res) {
-    if (res.ok) {
-      document.getElementById('rsvpForm').style.display = 'none';
-      document.getElementById('rsvpSuccess').style.display = 'block';
-    } else {
-      btn.textContent = 'Send RSVP';
-      btn.disabled = false;
-      alert('Something went wrong. Please try again.');
-    }
-  })
-  .catch(function() {
-    btn.textContent = 'Send RSVP';
-    btn.disabled = false;
-    alert('Connection error. Please check your internet and try again.');
-  });
-}
-
-// =================== ROSE PETALS ===================
-function createPetal() {
-  const container = document.getElementById('petalsContainer');
-  const petal = document.createElement('div');
-  petal.classList.add('petal');
-
-  const size = 8 + Math.random() * 16;
-  const colors = ['#E8B4B8','#F4C2C2','#FFAAAA','#F09090','#EE8888','#FAD4D4'];
-  const color = colors[Math.floor(Math.random() * colors.length)];
-  const left = Math.random() * 100;
-  const duration = 6 + Math.random() * 10;
-  const delay = Math.random() * 5;
-
-  petal.style.cssText = 'left:'+left+'%;width:'+size+'px;height:'+(size*0.6)+'px;background:'+color+';animation-duration:'+duration+'s;animation-delay:'+delay+'s;';
-
-  container.appendChild(petal);
-
-  setTimeout(function() {
-    petal.remove();
-  }, (duration + delay + 1) * 1000);
-}
-
-setInterval(createPetal, 400);
-for (var i = 0; i < 12; i++) createPetal();
 </script>
-
 </body>
 </html>
