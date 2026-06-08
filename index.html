@@ -876,65 +876,6 @@
   }
 
 
-  .contact-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    color: var(--gold);
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-  }
-
-  .contact-card {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    background: var(--white);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 12px;
-    padding: 25px 40px;
-    box-shadow: 0 8px 30px rgba(201,168,76,0.08);
-  }
-
-  .contact-role {
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    color: #aaa;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-  }
-
-  .contact-phone {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    color: var(--gold);
-    font-weight: 600;
-    letter-spacing: 2px;
-  }
-
-  .contact-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    border: 1px solid var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold);
-    font-size: 1.2rem;
-    flex-shrink: 0;
-  }
-
-  .footer-note {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    color: #ccc;
-    font-size: 0.9rem;
-    margin-top: 50px;
-    letter-spacing: 2px;
-  }
-
   /* ===================== AUDIO ===================== */
   #bg-audio { display: none; }
 
@@ -1007,11 +948,9 @@
     .monogram-text   { font-size: 3rem; }
 
     /* Contact */
-    .contact-card   { padding: 20px 24px; }
-    .contact-phone  { font-size: 1.2rem; }
 
     /* Section labels */
-    .section-label, .ceremony-section-label, .countdown-title, .rsvp-label, .contact-label {
+    .section-label, .ceremony-section-label, .countdown-title, .rsvp-label {
       font-size: clamp(0.65rem, 2.5vw, 0.8rem);
       letter-spacing: 5px;
     }
@@ -1202,8 +1141,9 @@
       <div class="rsvp-label">Kindly Respond</div>
       <p class="rsvp-body">Your presence means the world to us. Please kindly let us know if you will be able to join our celebration.</p>
       <div class="rsvp-form" id="rsvpForm">
+        <input type="hidden" id="web3key" value="c9d7b868-fb1f-4694-ac73-deedf5167001">
         <label class="rsvp-field-label">Full Name</label>
-        <input class="rsvp-input" type="text" id="rsvpName" placeholder="Enter your full name">
+        <input class="rsvp-input" type="text" id="rsvpName" placeholder="Enter your full name" required>
         <span class="rsvp-attend-label">Will you be attending?</span>
         <div class="rsvp-options">
           <div class="rsvp-option" id="optYes" onclick="selectAttend('yes')">
@@ -1347,16 +1287,21 @@ function submitRSVP() {
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
-  fetch('https://formspree.io/f/xdavkzry', {
+  const formData = {
+    access_key: document.getElementById('web3key').value,
+    name: name,
+    message: 'Attending: ' + (attendSelected === 'yes' ? 'Yes, I will attend ✓' : 'No, I cannot attend ✗'),
+    subject: 'Wedding RSVP – Vinoli & Manjitha'
+  };
+
+  fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      name: name,
-      attending: attendSelected === 'yes' ? 'Yes, I will attend' : 'No, I cannot attend'
-    })
+    body: JSON.stringify(formData)
   })
-  .then(function(res) {
-    if (res.ok) {
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.success) {
       document.getElementById('rsvpForm').style.display = 'none';
       document.getElementById('rsvpSuccess').style.display = 'block';
     } else {
